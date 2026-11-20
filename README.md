@@ -23,6 +23,7 @@ Cloudflare 边缘节点 / 优选 IP 导航页的**纯静态**副本，通过 Clo
 ├── tools/                  工具子页（204 检测、CIDR 转换、UUID、混淆器等）
 ├── report/                 报告页
 ├── src/index.js            可选：定时回源 Worker 脚本（第一步用不到）
+├── assets/                 README 用的截图（不随站点上传）
 ├── wrangler.jsonc          当前生效的配置（纯静态，无定时任务）
 ├── wrangler.cron.jsonc     开启定时任务时用的完整配置模板
 ├── _headers                缓存与安全响应头
@@ -128,6 +129,12 @@ Cloudflare 读取仓库里的 `wrangler.jsonc`：
 | `Missing script: "build"` | Build command 填了 `npm run build` | 清空 Build command |
 | `Could not resolve...` / `No such file` | Root directory 填错了 | 清空 Root directory |
 | `Authentication error` / 找不到仓库 | GitHub 授权时没勾这个仓库 | GitHub → Settings → Applications → Cloudflare Workers 里补授权 |
+
+## 1.7 部署完成后长这样
+
+![部署完成后打开 workers.dev 域名看到的页面](assets/deployed-preview.png)
+
+地址栏会是你自己的 `cf-nav.<账号子域>.workers.dev`。到这一步，左侧目录、顶部搜索、条目数徽标、复制按钮就已经全部可用了——打开就是上图这个状态。
 
 ---
 

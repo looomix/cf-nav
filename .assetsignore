@@ -4,7 +4,9 @@
 .gitignore
 .assetsignore
 wrangler.jsonc
+wrangler.cron.jsonc
 README.md
 node_modules/
 .wrangler/
 *.log
+src/

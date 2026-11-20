@@ -19,7 +19,7 @@ Cloudflare 边缘节点 / 优选 IP 导航页的**纯静态**副本，通过 Clo
 ├── WARP/                   WARP MASQUE / MINI 优选 IP
 ├── domain/                 已测域名列表（约 1MB）
 ├── random-region/          区域权重表
-├── vvhan/ vps789/ ...      各上游的订阅 txt（83 个数据文件，分布在 26 个目录）
+├── vvhan/ vps789/ ...      各上游的订阅 txt（84 个数据文件，分布在 26 个目录）
 ├── tools/                  工具子页（204 检测、CIDR 转换、UUID、混淆器等）
 ├── report/                 报告页
 ├── src/index.js            可选：定时回源 Worker 脚本（第一步用不到）
@@ -137,7 +137,7 @@ Cloudflare 读取仓库里的 `wrangler.jsonc`：
 
 `vvhan/`、`vps789/`、`tiancheng3/` 这些订阅 txt，在原站是**每半小时刷新**的。你仓库里的是**一份快照**，不做自动更新的话，这些链接会随时间失效。
 
-开启定时任务后，Worker 每天自动从源站重新抓 **83 个数据文件**（约 1.4 MB）写入 Cloudflare KV；用户访问时优先读 KV 里的最新数据，KV 里没有时才回落到仓库里的静态快照。
+开启定时任务后，Worker 每天自动从源站重新抓 **84 个数据文件**（约 1.4 MB）写入 Cloudflare KV；用户访问时优先读 KV 里的最新数据，KV 里没有时才回落到仓库里的静态快照。
 
 > 只打算临时用几天，可以跳过第二步。想长期稳定运行就做完它。
 
@@ -239,7 +239,7 @@ curl -sI https://cf-nav.<你的子域>.workers.dev/vvhan/ipv4.txt
 2. 筛选 `event = cron-refresh`，可见类似输出：
 
    ```json
-   {"event":"cron-refresh","ok":true,"total":83,"updated":83,"failed":0,"at":"2026-11-21T04:00:12.345Z"}
+   {"event":"cron-refresh","ok":true,"total":84,"updated":84,"failed":0,"at":"2026-11-21T04:00:12.345Z"}
    ```
 
    `failed` 不为 0 时，`failures` 字段会列出前 10 个失败路径和原因。
@@ -261,7 +261,7 @@ curl -sI https://cf-nav.<你的子域>.workers.dev/vvhan/ipv4.txt
    返回 JSON 结果：
 
    ```json
-   {"ok":true,"total":83,"updated":83,"failed":0,"failures":[],"at":"2026-11-20T09:30:00.000Z"}
+   {"ok":true,"total":84,"updated":84,"failed":0,"failures":[],"at":"2026-11-20T09:30:00.000Z"}
    ```
 
 没配 `REFRESH_TOKEN` 时，`/__refresh` 一律返回 404，不会暴露给外部。
@@ -270,7 +270,7 @@ curl -sI https://cf-nav.<你的子域>.workers.dev/vvhan/ipv4.txt
 
 | 项目 | 免费额度 | 本站消耗 |
 | --- | --- | --- |
-| KV 写入 | 1,000 次/天 | 83 次/天 |
+| KV 写入 | 1,000 次/天 | 84 次/天 |
 | KV 读取 | 100,000 次/天 | 每次访问一个数据文件算 1 次 |
 | KV 存储 | 1 GB | 约 1.5 MB |
 | Worker 请求 | 100,000 次/天 | 只有 26 个数据目录的请求会走 Worker，页面和其余资源不计 |

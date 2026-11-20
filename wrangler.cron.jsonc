@@ -21,6 +21,7 @@
     // 这些路径先交给 Worker 处理（优先读 KV），其余路径仍由平台直出静态文件
     "run_worker_first": [
       "/__refresh",
+      "/client-ver.txt",
       "/CIDR/*",
       "/WARP/*",
       "/domain/*",

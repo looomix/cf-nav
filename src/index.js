@@ -5,8 +5,9 @@ const ORIGIN = "https://bestcf.pages.dev";
 const KEY_PREFIX = "sub:v1:";
 const CONCURRENCY = 6;
 
-// 需要每天回源刷新的数据文件（共 83 个，约 1.4 MB）
+// 需要每天回源刷新的数据文件（共 84 个，约 1.4 MB）
 const SOURCES = [
+  'client-ver.txt',
   'CIDR/WARP-MASQUE-CIDRs.txt',
   'CIDR/all.txt',
   'CIDR/core.txt',

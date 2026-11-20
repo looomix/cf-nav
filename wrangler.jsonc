@@ -1,0 +1,9 @@
+{
+  // Cloudflare Workers 配置：纯静态站点，无需 Worker 脚本
+  // 文档：https://developers.cloudflare.com/workers/static-assets/
+  "name": "cf-nav",
+  "compatibility_date": "2026-11-20",
+  "assets": {
+    "directory": "."
+  }
+}

@@ -1,0 +1,10 @@
+# 不随站点上传的文件（gitignore 语法）
+# 上传到 Cloudflare 的只有真正的静态资源
+.git/
+.gitignore
+.assetsignore
+wrangler.jsonc
+README.md
+node_modules/
+.wrangler/
+*.log

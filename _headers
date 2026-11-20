@@ -1,0 +1,15 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/CIDR/*
+  Cache-Control: public, max-age=600
+
+/WARP/*
+  Cache-Control: public, max-age=600
+
+/domain/*
+  Cache-Control: public, max-age=3600
+
+/random-region/*
+  Cache-Control: public, max-age=600

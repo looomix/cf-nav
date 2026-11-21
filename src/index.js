@@ -1,4 +1,4 @@
-// Cloudflare Worker：静态站 + 每日定时回源刷新数据
+// Cloudflare Worker：静态站 + 定时分批回源刷新数据
 // 部署方式见 README「第二步：开启每日自动回源」
 
 const ORIGIN = "https://bestcf.pages.dev";
@@ -127,11 +127,27 @@ function dataUrl(path) {
   return new URL("/" + path, ORIGIN).toString();
 }
 
-async function refreshAll(env) {
+// 免费版 Worker 单次调用最多 50 个子请求（fetch），84 个文件必须分批刷新。
+// 每轮取 BATCH 个，用 KV 里的游标记录进度，跑满一轮自动回到起点。
+const BATCH = 28;
+const CURSOR_KEY = "meta:cursor";
+
+async function readCursor(env) {
+  const raw = await env.SUBS.get(CURSOR_KEY);
+  const n = parseInt(raw || "0", 10);
+  return Number.isFinite(n) && n >= 0 && n < SOURCES.length ? n : 0;
+}
+
+async function refreshSlice(env, size = BATCH) {
   if (!env.SUBS) {
     return { ok: false, error: "缺少 KV 绑定 SUBS，请检查 wrangler.jsonc" };
   }
-  const queue = SOURCES.slice();
+  const start = await readCursor(env);
+  const n = Math.min(size, SOURCES.length);
+  const batch = [];
+  for (let i = 0; i < n; i++) batch.push(SOURCES[(start + i) % SOURCES.length]);
+
+  const queue = batch.slice();
   const failures = [];
   let updated = 0;
 
@@ -157,12 +173,19 @@ async function refreshAll(env) {
 
   await Promise.all(Array.from({ length: CONCURRENCY }, drain));
 
+  // 无论成功与否都推进游标：失败的文件留到下一轮再试，不会卡住整轮
+  const next = (start + n) % SOURCES.length;
+  await env.SUBS.put(CURSOR_KEY, String(next));
+
   return {
     ok: true,
     total: SOURCES.length,
+    batch: n,
+    from: start,
+    next,
     updated,
     failed: failures.length,
-    failures: failures.slice(0, 10),
+    failures: failures.slice(0, 5),
     at: new Date().toISOString(),
   };
 }
@@ -172,12 +195,14 @@ export default {
     const url = new URL(request.url);
 
     // 手动触发一次刷新：/__refresh?token=你在后台设置的 REFRESH_TOKEN
+    // 可选 &n=28 指定本轮数量（上限 40，再多会超过子请求限制）
     if (url.pathname === "/__refresh") {
       const expected = env.REFRESH_TOKEN;
       if (!expected || url.searchParams.get("token") !== expected) {
         return new Response("Not Found", { status: 404 });
       }
-      const result = await refreshAll(env);
+      const size = Math.min(parseInt(url.searchParams.get("n") || String(BATCH), 10) || BATCH, 40);
+      const result = await refreshSlice(env, size);
       return Response.json(result);
     }
 
@@ -201,10 +226,10 @@ export default {
     return env.ASSETS.fetch(request);
   },
 
-  // 每天定时回源一次
+  // 定时回源：每次只刷一批，3 次跑完全部 84 个文件
   async scheduled(controller, env, ctx) {
     ctx.waitUntil(
-      refreshAll(env).then((r) => console.log(JSON.stringify({ event: "cron-refresh", ...r })))
+      refreshSlice(env).then((r) => console.log(JSON.stringify({ event: "cron-refresh", ...r })))
     );
   },
 };

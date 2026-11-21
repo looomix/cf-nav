@@ -1,9 +1,71 @@
 {
-  // Cloudflare Workers 配置：纯静态站点，无需 Worker 脚本
-  // 文档：https://developers.cloudflare.com/workers/static-assets/
+  // ============================================================
+  // 当前生效配置：静态站 + 每日定时回源（KV 缓存最新数据）
+  // 不想开定时任务，可换回纯静态版（见 README 2.2）
+  // ============================================================
   "name": "cf-nav",
+  "main": "src/index.js",
   "compatibility_date": "2026-11-20",
+
   "assets": {
-    "directory": "."
-  }
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": [
+      "/__refresh",
+      "/client-ver.txt",
+      "/CIDR/*",
+      "/WARP/*",
+      "/domain/*",
+      "/random-region/*",
+      "/cfyes/*",
+      "/cmliu/*",
+      "/cmliu2/*",
+      "/entryip/*",
+      "/gslege/*",
+      "/ircf/*",
+      "/kristi/*",
+      "/luoli/*",
+      "/lzj/*",
+      "/moistr/*",
+      "/nirevil/*",
+      "/s5gy/*",
+      "/tiancheng/*",
+      "/tiancheng2/*",
+      "/tiancheng3/*",
+      "/uouin/*",
+      "/vps789/*",
+      "/vvhan/*",
+      "/wetest/*",
+      "/xinyitang3/*",
+      "/yutian/*",
+      "/zhixuanwang/*"
+    ]
+  },
+
+  "kv_namespaces": [
+    {
+      "binding": "SUBS",
+      "id": "742a20bd49bd4fbab6f145fb3c193a1c"
+    }
+  ],
+
+  "triggers": {
+    // 免费版单次调用最多 50 个子请求，84 个文件分 3 批刷完
+    // 每天 04:00 / 04:10 / 04:20 UTC = 北京时间 12:00 / 12:10 / 12:20
+    "crons": ["0 4 * * *", "10 4 * * *", "20 4 * * *"]
+  },
+
+  "observability": {
+    "enabled": true
+  },
+
+  // workers.dev 作为备用入口保留（部分地区被墙，主入口用自定义域名）
+  "workers_dev": true,
+  "preview_urls": false,
+  "routes": [
+    {
+      "pattern": "cf-nav.315267532.xyz",
+      "custom_domain": true
+    }
+  ]
 }

@@ -22,9 +22,9 @@ Cloudflare 边缘节点 / 优选 IP 导航页的**纯静态**副本，通过 Clo
 ├── vvhan/ vps789/ ...      各上游的订阅 txt（84 个数据文件，分布在 26 个目录）
 ├── tools/                  工具子页（204 检测、CIDR 转换、UUID、混淆器等）
 ├── report/                 报告页
-├── src/index.js            可选：定时回源 Worker 脚本（第一步用不到）
+├── src/index.js            定时回源 Worker 脚本（分批刷新 + KV 缓存）
 ├── assets/                 README 用的截图（不随站点上传）
-├── wrangler.jsonc          当前生效的配置（纯静态，无定时任务）
+├── wrangler.jsonc          当前生效的配置（自定义域名 + KV + 每天 3 轮回源）
 ├── wrangler.cron.jsonc     开启定时任务时用的完整配置模板
 ├── _headers                缓存与安全响应头
 └── .assetsignore           不随站点上传到 CDN 的文件清单
@@ -73,11 +73,14 @@ Cloudflare 边缘节点 / 优选 IP 导航页的**纯静态**副本，通过 Clo
 
 1. 点 **Save and Deploy**（部分界面为 **Deploy**）
 2. 页面跳到构建日志，等 30～90 秒，出现绿色的 **Success** 即完成
-3. 顶部会显示访问地址，形如：
+3. 顶部会显示访问地址。有两个入口：
 
    ```
-   https://cf-nav.<你的账号子域>.workers.dev
+   https://cf-nav.315267532.xyz            ← 自定义域名，国内可直连
+   https://cf-nav.<你的账号子域>.workers.dev ← workers.dev，部分地区需代理
    ```
+
+   > `workers.dev` 在部分网络环境下会被 DNS 污染 / SNI 阻断，打不开不是部署失败。配置里的 `routes` 已把站点绑到 `cf-nav.315267532.xyz`，优先用这个地址。
 
 4. 打开该地址，页面应正常显示。此时排版、数据、复制按钮均已可用。
 
@@ -108,9 +111,11 @@ Cloudflare 读取仓库里的 `wrangler.jsonc`：
 
 ## 1.7 部署完成后长这样
 
-![部署完成后打开 workers.dev 域名看到的页面](assets/deployed-preview.png)
+![部署完成后打开 cf-nav.315267532.xyz 看到的页面](assets/deployed-preview.png)
 
-地址栏会是你自己的 `cf-nav.<账号子域>.workers.dev`。到这一步，左侧目录、顶部搜索、条目数徽标、复制按钮就已经全部可用了——打开就是上图这个状态。
+上面就是 `https://cf-nav.315267532.xyz` 的真实渲染结果。到这一步，左侧目录、顶部搜索、条目数徽标、复制按钮就已经全部可用了。
+
+如果地址栏换成了 `cf-nav.<账号子域>.workers.dev` 也能打开，那个入口在部分网络下会被阻断，优先用自定义域名。
 
 ---
 
@@ -136,6 +141,8 @@ Cloudflare 读取仓库里的 `wrangler.jsonc`：
 
 ## 2.2 替换配置文件
 
+> **现在是跳过状态**：`wrangler.jsonc` 已经是定时版配置，KV ID 填的就是 `cf-nav-subs`（`742a20bd...`），`src/index.js` 也已在运行。这节只有在**换 KV** 或**从纯静态重新升级**时才需要照做。
+
 1. 打开 <https://github.com/looomix/cf-nav/blob/main/wrangler.cron.jsonc>
 2. 点右上角 **Copy raw file**（或点 **Raw** 后全选复制）
 3. 打开 <https://github.com/looomix/cf-nav/blob/main/wrangler.jsonc>，点右上角铅笔图标 **Edit**
@@ -158,22 +165,29 @@ Cloudflare 读取仓库里的 `wrangler.jsonc`：
 
 ## 2.3 设置 cron 表达式（决定每天几点跑）
 
-配置里的 `triggers.crons` 就是定时规则，**时间一律是 UTC，不是北京时间**：
+配置里的 `triggers.crons` 就是定时规则，**时间一律是 UTC，不是北京时间**。
 
-| 想要的北京时间 | 应填的 cron | 含义 |
-| --- | --- | --- |
-| 每天 12:00 | `0 4 * * *` | UTC 04:00（仓库默认值） |
-| 每天 04:00 | `0 20 * * *` | UTC 20:00 |
-| 每天 09:00 | `0 1 * * *` | UTC 01:00 |
-| 每 6 小时一次 | `0 */6 * * *` | UTC 0/6/12/18 点 |
+**先说一个必须知道的上限**：免费版 Worker **单次调用最多 50 个子请求**（每次回源算 1 个），而这里有 84 个数据文件，一次跑不完。所以脚本改成了**分批轮转**：每轮刷 28 个，用 KV 里的游标记录进度，3 轮刷完全部 84 个，第 4 轮自动回到起点。
 
-改法：同样打开 `wrangler.jsonc` 点编辑，改这一行后提交：
+对应的 cron 就是每天 3 次，间隔 10 分钟：
 
 ```jsonc
 "triggers": {
-  "crons": ["0 20 * * *"]
+  "crons": ["0 4 * * *", "10 4 * * *", "20 4 * * *"]
 }
 ```
+
+= UTC 04:00 / 04:10 / 04:20 = **北京时间 12:00 / 12:10 / 12:20**，整个刷新在 10 分钟内完成，效果等同于「每天更新一次」。
+
+想换时间，三个值一起平移即可：
+
+| 想要的北京时间 | 三个 cron（间隔 10 分钟） |
+| --- | --- |
+| 每天 12:00 | `0 4 * * *` `10 4 * * *` `20 4 * * *` |
+| 每天 04:00 | `0 20 * * *` `10 20 * * *` `20 20 * * *` |
+| 每天 09:00 | `0 1 * * *` `10 1 * * *` `20 1 * * *` |
+
+如果想更勤，把间隔改成每 30 分钟一轮也行（`*/30 * * * *`），那样约 1.5 小时刷完全站一遍，KV 写入量仍在免费额度内。
 
 > **注意**：cron 变更最多需要 **15 分钟**才能同步到 Cloudflare 全球网络，期间可能错过一次调度，属正常现象。
 >
@@ -193,7 +207,7 @@ Cloudflare 读取仓库里的 `wrangler.jsonc`：
 | `assets.run_worker_first` | 26 条路径规则 | **关键**：列出的路径先交给 Worker 处理，才能优先返回 KV 里的新数据；其余路径由平台直出静态文件，不消耗 Worker 调用次数 |
 | `kv_namespaces[0].binding` | `SUBS` | KV 在代码里的变量名，**不要改**，改了代码里找不到 |
 | `kv_namespaces[0].id` | 你的 ID | KV 实例标识，必须换成 2.1 拿到的 ID |
-| `triggers.crons` | `0 4 * * *` | 定时规则，UTC 时间 |
+| `triggers.crons` | 3 条 cron | 定时规则，UTC 时间，每天 3 轮分批刷完 |
 | `observability.enabled` | `true` | 打开日志，方便在面板里查看定时任务执行结果 |
 
 ## 2.5 验证是否生效
@@ -205,7 +219,7 @@ Cloudflare 读取仓库里的 `wrangler.jsonc`：
 cron 到点后（或手动触发一次，见 2.6），请求任意数据文件，看响应头是否带 `x-data-source: kv`：
 
 ```bash
-curl -sI https://cf-nav.<你的子域>.workers.dev/vvhan/ipv4.txt
+curl -sI https://cf-nav.315267532.xyz/vvhan/ipv4.txt
 ```
 
 看到 `x-data-source: kv` 说明读的是 KV 里的新数据；没有这个头表示还在用静态快照（说明 KV 尚未写入成功）。
@@ -222,10 +236,10 @@ curl -sI https://cf-nav.<你的子域>.workers.dev/vvhan/ipv4.txt
 2. 筛选 `event = cron-refresh`，可见类似输出：
 
    ```json
-   {"event":"cron-refresh","ok":true,"total":84,"updated":84,"failed":0,"at":"2026-11-21T04:00:12.345Z"}
+   {"event":"cron-refresh","ok":true,"total":84,"batch":28,"from":0,"next":28,"updated":28,"failed":0,"at":"2026-11-21T04:00:12.345Z"}
    ```
 
-   `failed` 不为 0 时，`failures` 字段会列出前 10 个失败路径和原因。
+   `from` → `next` 是这一轮刷的区间，`failed` 不为 0 时 `failures` 会列出前 5 个失败路径和原因。
 
 ## 2.6 可选：配一个手动刷新令牌
 
@@ -235,17 +249,21 @@ curl -sI https://cf-nav.<你的子域>.workers.dev/vvhan/ipv4.txt
 2. 点 **Add** → 类型选 **Secret**（密钥）
 3. **Variable name** 填 `REFRESH_TOKEN`
 4. **Value** 填一个自己定的随机字符串，例如 `my-cf-nav-2026` → 保存并部署
-5. 访问：
+5. 访问（**一次只刷一批**，连调 3 次刚好刷完全站）：
 
    ```
-   https://cf-nav.<你的子域>.workers.dev/__refresh?token=my-cf-nav-2026
+   https://cf-nav.315267532.xyz/__refresh?token=你设的字符串
    ```
 
    返回 JSON 结果：
 
    ```json
-   {"ok":true,"total":84,"updated":84,"failed":0,"failures":[],"at":"2026-11-20T09:30:00.000Z"}
+   {"ok":true,"total":84,"batch":28,"from":0,"next":28,"updated":28,"failed":0,"failures":[],"at":"2026-11-20T09:30:00.000Z"}
    ```
+
+   连调三次，`from` 会依次是 `0 → 28 → 56 → 0`，第三次结束后全站 84 个文件都是最新数据。
+
+   想一轮多刷几个，加 `&n=40`（上限 40，再多会撞上 50 个子请求的限制）。
 
 没配 `REFRESH_TOKEN` 时，`/__refresh` 一律返回 404，不会暴露给外部。
 
@@ -253,7 +271,7 @@ curl -sI https://cf-nav.<你的子域>.workers.dev/vvhan/ipv4.txt
 
 | 项目 | 免费额度 | 本站消耗 |
 | --- | --- | --- |
-| KV 写入 | 1,000 次/天 | 84 次/天 |
+| KV 写入 | 1,000 次/天 | 84 次数据 + 3 次游标 = 87 次/天 |
 | KV 读取 | 100,000 次/天 | 每次访问一个数据文件算 1 次 |
 | KV 存储 | 1 GB | 约 1.5 MB |
 | Worker 请求 | 100,000 次/天 | 只有 26 个数据目录的请求会走 Worker，页面和其余资源不计 |
@@ -263,6 +281,12 @@ curl -sI https://cf-nav.<你的子域>.workers.dev/vvhan/ipv4.txt
 ---
 
 # 自定义域名
+
+**现在的状态**：已在 `wrangler.jsonc` 的 `routes` 里绑定 `cf-nav.315267532.xyz`，部署时自动创建 DNS 记录和证书，不用手动去面板点。
+
+想换域名：改 `routes[0].pattern` 后重新部署即可（旧记录不会被自动删除，需要到 DNS 页面手动清理）。
+
+要手动添加：
 
 1. **Workers & Pages** → `cf-nav` → **Settings** → **Domains & Routes** → **Add** → **Custom domain**
 2. 填入域名（如 `nav.example.com`），按提示完成 DNS 记录

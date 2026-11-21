@@ -1,9 +1,73 @@
 {
-  // Cloudflare Workers 配置：纯静态站点，无需 Worker 脚本
-  // 文档：https://developers.cloudflare.com/workers/static-assets/
+  // ============================================================
+  // 开启「每日自动回源」时使用的完整配置。
+  // 用法：把本文件全部内容复制，粘贴覆盖 wrangler.jsonc，
+  //      只需改动下面 kv_namespaces 里的 id 一处。
+  // ============================================================
+
+  // 必须与 Cloudflare Dashboard 里的 Worker 名称完全一致，否则构建会失败
   "name": "cf-nav",
+
+  // 指定 Worker 脚本入口（开启定时任务后必须有）
+  "main": "src/index.js",
+
   "compatibility_date": "2026-11-20",
+
   "assets": {
-    "directory": "."
+    // 静态站根目录
+    "directory": ".",
+    // 绑定名，代码里通过 env.ASSETS 访问静态资源
+    "binding": "ASSETS",
+    // 这些路径先交给 Worker 处理（优先读 KV），其余路径仍由平台直出静态文件
+    "run_worker_first": [
+      "/__refresh",
+      "/client-ver.txt",
+      "/CIDR/*",
+      "/WARP/*",
+      "/domain/*",
+      "/random-region/*",
+      "/cfyes/*",
+      "/cmliu/*",
+      "/cmliu2/*",
+      "/entryip/*",
+      "/gslege/*",
+      "/ircf/*",
+      "/kristi/*",
+      "/luoli/*",
+      "/lzj/*",
+      "/moistr/*",
+      "/nirevil/*",
+      "/s5gy/*",
+      "/tiancheng/*",
+      "/tiancheng2/*",
+      "/tiancheng3/*",
+      "/uouin/*",
+      "/vps789/*",
+      "/vvhan/*",
+      "/wetest/*",
+      "/xinyitang3/*",
+      "/yutian/*",
+      "/zhixuanwang/*"
+    ]
+  },
+
+  "kv_namespaces": [
+    {
+      // 代码里的变量名，不要改
+      "binding": "SUBS",
+      // ↓↓↓ 把这一整串换成你自己的 KV Namespace ID（见 README 2.1）↓↓↓
+      "id": "742a20bd49bd4fbab6f145fb3c193a1c"
+    }
+  ],
+
+  "triggers": {
+    // 每天 04:00 UTC（= 北京时间 12:00）执行一次回源
+    // 想换成北京时间凌晨 4 点：改成 "0 20 * * *"
+    "crons": ["0 4 * * *"]
+  },
+
+  // 打开日志，便于在面板里查看定时任务的执行结果
+  "observability": {
+    "enabled": true
   }
 }

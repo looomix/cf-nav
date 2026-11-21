@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="favicon.svg" type="image/svg+xml">
-	<meta name="description" content="Cloudflare EDT 导航 - 搭建Cloudflare节点的第一站 - BestCF.pages.dev">
+	<meta name="description" content="Cloudflare 节点导航：EDT 脚本、WARP MASQUE、优选 IP、检测与转换工具">
 	<meta name="keywords" content="Cloudflare, EDT, BestIP, 优选IP, آی‌پی بهینه, Оптимальный IP, 优选域名, 免费魔法, VLESS, VMess, Trojan, Hysteria2, Tuic, Shadowsocks, Reality, Workers, Pages, Snippets, WARP, v2rayN, Clash, Sing-box, Shadowrocket, NekoBox, Stash, Loon, Surfboard, BPB, CMLiu, YGKKK, zizifn, 真香定律, 网络加速, 科学上网, 翻墙">
 	<meta name="author" content="Cloudflare EDT 导航">
 	<link rel="canonical" href="https://bestcf.pages.dev/">
 	<meta property="og:type" content="website">
-	<meta property="og:title" content="Cloudflare EDT 导航 | EDT AIO NAV">
+	<meta property="og:title" content="Cloudflare 导航 | EDT × WARP MASQUE">
 	<meta property="og:description" content="搭建CF节点的第一站">
 	<meta property="og:url" content="https://bestcf.pages.dev/">
-	<meta property="og:site_name" content="Cloudflare EDT 导航 | EDT AIO NAV">
-	<meta name="twitter:title" content="Cloudflare EDT 导航 | EDT AIO NAV">
+	<meta property="og:site_name" content="Cloudflare 导航 | EDT × WARP MASQUE">
+	<meta name="twitter:title" content="Cloudflare 导航 | EDT × WARP MASQUE">
 	<meta name="twitter:description" content="搭建CF节点的第一站">	
-    <title>CF EDT 导航 | EDT AIO NAV - BestCF.pages.dev | Cloudflare EdgeTunnel</title>
+    <title>Cloudflare 导航 | EDT 脚本 × WARP MASQUE</title>
 	<style>
 		:root { --bg-color: #0f172a; --card-bg: rgba(24, 36, 56, 0.68); --accent-blue: #3b82f6; --text-main: #f1f5f9; --text-muted: #94a3b8; --border-color: rgba(255, 255, 255, 0.08); --code-bg: rgba(15, 23, 42, 0.5); }
 		* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -65,6 +65,8 @@
 		.notice-mini-card { display: block; width: 100%; box-sizing: border-box; background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 10px 20px; font-size: 14px; color: var(--text-main); line-height: 1.6; word-break: break-all; white-space: normal; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 25px; }
 		.notice-list { display: inline; color: var(--text-muted); } .notice-list span:not(:last-child)::after { content: "|"; color: var(--border-color); margin: 0 8px; }
 	</style>
+
+
 
 
 
@@ -398,6 +400,30 @@ footer a { color: var(--accent-strong) !important; }
   padding: 14px 8px 6px;
 }
 
+/* EDT 区 / MASQUE 区之间的分隔线 */
+.ui2-toc-sep {
+  height: 1px;
+  margin: 14px 8px 2px;
+  background: var(--ui2-line-strong);
+}
+
+/* MASQUE 分区里的下拉框与只读输入框（原站是深色内联样式） */
+.url-box select,
+.url-box input.url-text {
+  color: #2f6382 !important;
+  font-size: 0.84rem !important;
+  font-weight: 500;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  appearance: auto;
+}
+
+.url-box select option {
+  background: #ffffff !important;
+  color: #0f3550 !important;
+}
+
 .ui2-toc-link {
   display: flex;
   align-items: center;
@@ -633,6 +659,78 @@ mark.ui2-hit {
   * { transition: none !important; animation: none !important; }
 }
 
+/* ---------- 9. 表格（MASQUE 对比表 / 平台推荐表） ---------- */
+.platform-table-box { width: 100%; margin-top: 10px; }
+.table-compare {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+.table-recommend {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: auto;
+}
+.platform-name {
+  font-weight: 700;
+  color: var(--text-main) !important;
+  display: block;
+  line-height: 1.35;
+}
+.tool-list {
+  color: var(--text-main) !important;
+  line-height: 1.65;
+}
+.platform-table tr:last-child td { border-bottom: none !important; }
+.platform-table td {
+  color: var(--text-main) !important;
+  border-bottom: 1px solid var(--ui2-line) !important;
+}
+.table-compare th,
+.table-compare td {
+  padding: 11px 10px !important;
+  font-size: 0.82rem !important;
+  text-align: left !important;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.table-compare th {
+  color: var(--text-muted) !important;
+  font-weight: 700 !important;
+  font-size: 0.76rem !important;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--ui2-line-strong) !important;
+  background: #f6fbff;
+}
+.table-compare th:nth-child(1),
+.table-compare td:nth-child(1) { width: 15%; white-space: nowrap; }
+.table-compare th:nth-child(2),
+.table-compare td:nth-child(2) { width: 42.5%; }
+.table-compare th:nth-child(3),
+.table-compare td:nth-child(3) { width: 42.5%; }
+.table-recommend td {
+  padding: 10px 8px !important;
+  font-size: 0.82rem !important;
+  vertical-align: top;
+}
+.table-recommend td:first-child { white-space: nowrap; padding-right: 18px !important; }
+.table-recommend td:last-child { word-break: break-word; }
+.table-recommend tr + tr td { border-top: 1px solid var(--ui2-line); }
+
+/* 窄屏下对比表改为纵向堆叠，避免挤压 */
+@media (max-width: 720px) {
+  .table-compare { table-layout: auto; }
+  .table-compare th:nth-child(1),
+  .table-compare td:nth-child(1),
+  .table-compare th:nth-child(2),
+  .table-compare td:nth-child(2),
+  .table-compare th:nth-child(3),
+  .table-compare td:nth-child(3) { width: auto; }
+  .table-compare th, .table-compare td { padding: 8px 6px !important; font-size: 0.78rem !important; }
+}
+
 </style>
 </head>
 <body id="bodyTop">
@@ -663,8 +761,8 @@ mark.ui2-hit {
 </div>
     <div class="container">
         <header>
-            <h1>Cloudflare EDT <span style="display: inline-block;">导航</span></h1>
-			<h1 id="dynamic-h1" style="font-size:1.25rem;font-weight:bold;margin-top:-12px;min-height:1.5em;">Cloudflare 节点 · 优选 IP · 实用工具</h1>
+            <h1>Cloudflare <span style="display: inline-block;">导航</span></h1>
+			<h1 id="dynamic-h1" style="font-size:1.25rem;font-weight:bold;margin-top:-12px;min-height:1.5em;">EDT 脚本 · WARP MASQUE · 优选 IP</h1>
         </header>
         <section id="kjrk">
             <!-- <h2>快捷入口</h2> --><br>
@@ -826,8 +924,8 @@ mark.ui2-hit {
                 <div class="item-header"><span class="item-title">WARP MASQUE 导航</span><span class="tag tag-featured">EDT兄弟</span><span class="tag tag-featured">NEW</span></div>
                 <div class="item-desc">三大内核均已支持 / 一键转换器 无需部署 不限用量 / 无需优选和ProxyIP</div>
 				<div class="action-area">
-                    <div class="url-box"><span class="url-text">masque.pages.dev</span></div>
-                    <a href="https://masque.pages.dev/" class="open-btn" target="_blank">立即查看</a>
+                    <div class="url-box"><span class="url-text">本页 · MASQUE 分区</span></div>
+                    <a href="#m-intro" class="open-btn">立即查看</a>
                 </div>
             </div>        
 		</section>
@@ -5096,33 +5194,27 @@ mark.ui2-hit {
                 <div class="item-header"><span class="item-title">WARP MASQUE 导航</span><span class="tag tag-featured">EDT兄弟</span></div>
                 <div class="item-desc">三大内核均已支持 / 一键转换器 无需部署 不限用量 / 无需优选和ProxyIP</div>
 				<div class="action-area">
-                    <div class="url-box"><span class="url-text">masque.pages.dev</span></div>
-                    <a href="https://masque.pages.dev/" class="open-btn" target="_blank">打开链接</a>
+                    <div class="url-box"><span class="url-text">本页 · MASQUE 分区</span></div>
+                    <a href="#m-intro" class="open-btn">打开链接</a>
                 </div>
             </div> 
 			
-<style>
-    .platform-table-box { width: 100%; margin-top: 10px; }
-    .table-compare { width: 100%; border-collapse: collapse; border-spacing: 0; table-layout: fixed; }
-    .table-recommend { width: 100%; border-collapse: collapse; border-spacing: 0; table-layout: auto; }
-    .platform-name { font-weight: 700; color: var(--text-main); display: block; line-height: 1.2; }
-    .tool-list { color: var(--text-main); line-height: 1.6; }
-    .platform-table tr:last-child td { border-bottom: none; }
-    .platform-table td { color: var(--text-main); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-    .table-compare th, .table-compare td { padding: 12px 4px !important; font-size: 0.85rem; text-align: left !important; vertical-align: top; }
-    .table-compare th { color: var(--text-muted); font-weight: 600; border-bottom: 1px solid var(--border-color); }
-    .table-compare th:nth-child(1), .table-compare td:nth-child(1) { width: 22%; }
-    .table-compare th:nth-child(2), .table-compare td:nth-child(2) { width: 39%; }
-    .table-compare th:nth-child(3), .table-compare td:nth-child(3) { width: 39%; }
-    .table-recommend td { padding: 12px 4px; font-size: 0.85rem; vertical-align: top; }
-    .table-recommend td:first-child { 
-        white-space: nowrap; 
-        padding-right: 16px; 
-    }
-    .table-recommend td:last-child { 
-        word-break: break-word; 
-    }
-</style>
+
+
+			
+        </section>	
+		
+        <!-- ===== WARP MASQUE BEGIN ===== -->
+<section id="m-intro">
+<h2>WARP MASQUE 总览</h2>
+            <!-- <h2 class="breath">WARP MASQUE</h2> -->
+			<div class="notice-mini-card">
+                <b style="color: var(--text-main); margin-right: 8px;">最近更新</b>
+                <!-- <span style="color: var(--border-color); margin: 0 8px;">|</span> -->
+                <div class="notice-list"><span>搜索端点</span><span>ZeroTrust注册</span><span>端点更新</span><span>转换器新增端点 MASQUE To Clash / Xray / Singbox / Hiddify / 小火箭</span></div>
+            </div>	
+
+
 
 <div class="group-card">
     <div class="group-name"><span class="item-title">MASQUE / EDT 对比</span></div> 
@@ -5138,7 +5230,7 @@ mark.ui2-hit {
             <tbody>
                 <tr><td><span class="platform-name">政策</span></td><td class="tool-list">✅ 基于WARP，具备代理效果，符合官方政策，Usque等属于逆向工程，官方未表态</td><td class="tool-list">基于Workers，官方明确声明禁止用于代理，容易封部署封号</td></tr>
                 <tr><td><span class="platform-name">注册</span></td><td class="tool-list">✅ 无需账号 一键注册</td><td class="tool-list">需要注册并使用管理面板</td></tr>
-                <tr><td><span class="platform-name">部署</span></td><td class="tool-list">✅ 无需部署 一键生成 开箱即用</td><td class="tool-list">需要部署脚本 频繁部署易封</td></tr>
+                <tr><td><span class="platform-name">部署</span></td><td class="tool-list">✅ 无需部署 一键生成</td><td class="tool-list">需要部署脚本 频繁部署易封</td></tr>
                 <tr><td><span class="platform-name">额度</span></td><td class="tool-list">✅ 免费无限制</td><td class="tool-list">每日10万免费请求额度</td></tr>
                 <tr><td><span class="platform-name">延迟</span></td><td class="tool-list">官方端点 美西 延迟160~220ms</td><td class="tool-list">依赖优选IP和ProxyIP质量</td></tr>
                 <tr><td><span class="platform-name">速度</span></td><td class="tool-list">官方端点 非高峰100-600mbps</td><td class="tool-list">依赖优选IP和ProxyIP质量</td></tr>
@@ -5148,10 +5240,1417 @@ mark.ui2-hit {
             </tbody>
         </table>
     </div>
-</div>			
-        </section>	
-		
-        <footer>
+</div>
+
+<div class="group-card" style="margin-top: 20px;">
+    <div class="group-name"><span class="item-title">MASQUE 推荐方案</span></div> 
+    <div class="platform-table-box">
+        <table class="platform-table table-recommend">
+            <tbody>
+                <tr><td><span class="platform-name">Windows</span></td><td class="tool-list">Clash Verge或FlClash + Clash转换器 / v2rayN + Xray转换器 / Throne + Singbox转换器 / Usque</td></tr>
+                <tr><td><span class="platform-name">Android</span></td><td class="tool-list">FlClash + Clash转换器 / Usque / v2rayNG + Xray转换器 / Throne + Singbox转换器</td></tr>
+                <tr><td><span class="platform-name">HarmonyOS</span></td><td class="tool-list">FlClash改包名版或原生版 + Clash转换器 / Usque</td></tr>
+                <tr><td><span class="platform-name">iOS</span></td><td class="tool-list">小火箭 + 转换器 / Hiddify + 转换器 / Streisand + Xray转换器</td></tr> 
+                <tr><td><span class="platform-name">macOS</span></td><td class="tool-list">Clash Verge或FlClash + Clash转换器 / v2rayN + Xray转换器 / Throne + Singbox转换器</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</section>
+
+<section id="m-client">
+            <h2>MASQUE 专用客户端</h2>				
+            <div class="group-card">
+                <div class="group-name">PC桌面</div>				
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Usque</span><span class="tag">Win</span><span class="tag">Mac</span><span class="tag tag-featured">推荐</span></div>
+                    <div class="item-desc">高性能usque内核分支 / 多方案链式代理 / 按应用和Geo分流 / 颜值在线</div>
+					<div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/GeorgeXie2333/usque-app</span></div>
+                        <a href="https://github.com/GeorgeXie2333/usque-app/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Throne</span><span class="tag">Win</span><span class="tag">Mac</span><span class="tag tag-featured">推荐</span><span class="tag tag-featured">NEW</span></div>
+					<div class="item-desc">已支持界面添加MASQUE / 一键生成MASQUE配置 / Singbox内核分支</div>	                    
+					<div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/throneproj/Throne</span></div>
+                        <a href="https://github.com/throneproj/Throne/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>				
+                </div>
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">QW/Aether</span><span class="tag">Win</span><span class="tag">颜控</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/QW-AI-Code/Aether_Desktop</span></div>
+                        <a href="https://github.com/QW-AI-Code/Aether_Desktop/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">White Aesther</span><span class="tag">Win</span><span class="tag">Mac</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/WhiteDNS/WhiteAesther</span></div>
+                        <a href="https://github.com/WhiteDNS/WhiteAesther/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Hemera</span><span class="tag">A内核</span><span class="tag">Win</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/ramin-mahmoodi/Hemera</span></div>
+                        <a href="https://github.com/ramin-mahmoodi/Hemera/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Zarp</span><span class="tag">Win</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/feg55/Zarp</span></div>
+                        <a href="https://github.com/feg55/Zarp/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">AetherST</span><span class="tag">Win</span><span class="tag">非标规则集</span></div> -->
+                    <!-- <div class="item-desc">如果默认状态下无法连接，取消勾选H2，或尝试切换不同协议；支持嵌套Psiphon</div> -->
+					<!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">github.com/immaghzbad/AetherST</span></div> -->
+                        <!-- <a href="https://github.com/immaghzbad/AetherST/releases" class="open-btn" target="_blank">打开链接</a> -->
+                    <!-- </div> -->
+                <!-- </div> 				 -->
+			</div>
+
+			<!-- <div class="group-card"> -->
+                <!-- <div class="group-name">PC分流客户端 × 自定义多内核</div> -->
+                <!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">Throne</span><span class="tag">Win/Mac</span><span class="tag tag-featured">推荐</span></div> -->
+					<!-- <div class="item-desc">不要下载exe安装包！要便携包！不要放系统盘！不要以ADMIN管理员运行！</div>	                     -->
+					<!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">github.com/throneproj/Throne</span></div> -->
+                        <!-- <a href="https://github.com/throneproj/Throne/releases" class="open-btn" target="_blank">打开链接</a> -->
+                    <!-- </div>				 -->
+                <!-- </div> -->
+				<!-- <div class="link-row"> -->
+					<!-- <div class="item-header"> -->
+						<!-- <span class="item-title">MASQUE 扩展包 × Throne专用</span> -->
+						<!-- <span class="tag">快速上手</span> -->
+					<!-- </div> -->
+					<!-- <div class="item-desc"> -->
+						<!-- Mac和Linux需要手动替换内核文件和执行注册命令，其它与Windows一致<br> -->
+					<!-- </div>					 -->
+					<!-- <div class="action-area"> -->
+						<!-- <div class="url-box"><span class="url-text">github.com/wanwushequ/Masque-Extension-Pack</span></div> -->
+						<!-- <a href="https://github.com/wanwushequ/Masque-Extension-Pack/releases" class="open-btn" target="_blank">打开链接</a> -->
+					<!-- </div> -->
+				<!-- </div> -->
+				<!-- <div class="link-row"> -->
+					<!-- <div class="item-header"> -->
+						<!-- <span class="item-title">Nekoray 一键启动 整合包</span><span class="tag">Win</span> -->
+					<!-- </div> -->
+					<!-- <div class="item-desc"> -->
+						<!-- 支持ADMIN启动，仅含U和A内核的MASQUE协议配置，其它参考配置说明 -->
+					<!-- </div>					 -->
+					<!-- <div class="action-area"> -->
+						<!-- <div class="url-box"><span class="url-text">github.com/wanwushequ/Nekoray-MASQUE-AIO</span></div> -->
+						<!-- <a href="https://github.com/wanwushequ/Nekoray-MASQUE-AIO/releases" class="open-btn" target="_blank">打开链接</a> -->
+					<!-- </div> -->
+				<!-- </div> -->
+				<!-- <div class="link-row"> -->
+					<!-- <div class="item-header"> -->
+						<!-- <span class="item-title">Nekoray 手动配置参数</span> -->
+					<!-- </div> -->
+					<!-- <div class="item-desc"> -->
+						<!-- 1.先使用Throne按教程进行备份恢复；<br> -->
+						<!-- 2.双击打开每个配置项，将名称/端口/参数(命令)逐一复制；<br> -->
+						<!-- 3.在Nekoray-首选项-基本设置-其它核心，添加需要的核心文件，例如：usque\usque.exe<br> -->
+						<!-- 4.在Nekoray首页列表中右键选择手动输入配置，类型选择其它核心，将第2步复制的字符对应粘贴进来 -->
+					<!-- </div> -->
+					<!-- <div class="action-area"> -->
+						<!-- <div class="url-box"><span class="url-text">masque.pages.dev/nekoray-masque.png</span></div> -->
+						<!-- <a href="/nekoray-masque.png" class="open-btn" target="_blank">示例图片</a> -->
+					<!-- </div> -->
+				<!-- </div>					 -->
+                <!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">Nekoray</span><span class="tag">Win</span><span class="tag">已停更</span></div> -->
+                    <!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">github.com/MatsuriDayo/nekoray</span></div> -->
+                        <!-- <a href="https://github.com/MatsuriDayo/nekoray/releases" class="open-btn" target="_blank">打开链接</a> -->
+                    <!-- </div> -->
+                <!-- </div>	 -->
+			<!-- </div> -->
+				
+            <div class="group-card">
+                <div class="group-name">安卓</div>
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Usque</span><span class="tag tag-featured">推荐</span></div>
+                    <div class="item-desc">高性能usque内核分支 / 多方案链式代理 / 按应用和Geo分流 / 颜值在线</div>
+					<div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/GeorgeXie2333/usque-app</span></div>
+                        <a href="https://github.com/GeorgeXie2333/usque-app/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Throne</span><span class="tag tag-featured">推荐</span><span class="tag tag-featured">NEW</span></div>
+                    <div class="item-desc">支持界面添加MASQUE / 一键生成MASQUE配置 / Singbox内核分支</div>
+					<div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/throneproj/ThroneForAndroid</span>
+                        </div>
+                        <a href="https://github.com/throneproj/ThroneForAndroid/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>						
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">AsteriskNG</span><span class="tag tag-featured">推荐</span></div>
+                    <div class="item-desc">支持界面添加MASQUE / Xray内核</div>
+					<div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/Asterisk4Magisk/AsteriskNG</span></div>
+                        <a href="https://github.com/Asterisk4Magisk/AsteriskNG/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">LxBox</span></div>
+                    <div class="item-desc">支持一键生成MASQUE配置 / 支持自动切换 / SingBox内核分支Lx</div>
+					<div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/Leadaxe/LxBox</span></div>
+                        <a href="https://github.com/Leadaxe/LxBox/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">QW/Aether</span><span class="tag">颜控</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/QW-AI-Code/Aether</span></div>
+                        <a href="https://github.com/QW-AI-Code/Aether/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>					
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">MSN GUARD</span><span class="tag">A内核</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/mbm110/MSN-GUARD</span></div>
+                        <a href="https://github.com/mbm110/MSN-GUARD/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">White Aesther</span><span class="tag">颜控</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/WhiteDNS/WhiteAestherMobile</span></div>
+                        <a href="https://github.com/WhiteDNS/WhiteAestherMobile/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>	
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">AetherST</span><span class="tag">颜控</span><span class="tag">多协议</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/immaghzbad/AetherST</span></div>
+                        <a href="https://github.com/immaghzbad/AetherST/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">AetherGUI</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/hamvex/AetherGUI</span></div>
+                        <a href="https://github.com/hamvex/AetherGUI/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">Garthnet/usque</span><span class="tag">中文</span></div> -->
+                    <!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">github.com/garthnet/usque-android-app</span></div> -->
+                        <!-- <a href="https://github.com/garthnet/usque-android-app/releases" class="open-btn" target="_blank">打开链接</a> -->
+                    <!-- </div> -->
+                <!-- </div>				 -->
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Aethery</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/ZethRise/Aethery</span></div>
+                        <a href="https://github.com/ZethRise/Aethery/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">Usque Proxy</span></div> -->
+					<!-- <div class="item-desc">需要先进设置手动点Register注册WARP账号</div> -->
+                    <!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">github.com/nhubaotruong/usque-proxy</span></div> -->
+                        <!-- <a href="https://github.com/nhubaotruong/usque-proxy/releases" class="open-btn" target="_blank">打开链接</a> -->
+                    <!-- </div> -->
+                <!-- </div>				 -->
+                <!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">UsqueBox</span></div> -->
+                    <!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">github.com/justinwoo280/usquebox</span></div> -->
+                        <!-- <a href="https://github.com/justinwoo280/usquebox/releases" class="open-btn" target="_blank">打开链接</a> -->
+                    <!-- </div> -->
+                <!-- </div>	 -->
+                <!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">WarpScout Android</span><span class="tag">S内核</span></div> -->
+					<!-- <div class="item-desc">多协议 / 扫描端点 / 生成Usque和Clash配置文件</div> -->
+                    <!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">github.com/openwarpkit/warpscout-android</span></div> -->
+                        <!-- <a href="https://github.com/openwarpkit/warpscout-android/releases" class="open-btn" target="_blank">打开链接</a> -->
+                    <!-- </div> -->
+                <!-- </div>					 -->
+                <!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">8DE4732A/usque</span><span class="tag tag-featured">预发布</span><span class="tag">极简</span></div> -->
+                    <!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">github.com/8DE4732A/usque-android</span></div> -->
+                        <!-- <a href="https://github.com/8DE4732A/usque-android/releases" class="open-btn" target="_blank">打开链接</a> -->
+                    <!-- </div> -->
+                <!-- </div>	 -->
+                <!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">Abobo7/usque</span></div> -->
+                    <!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">github.com/Abobo7/usque-android</span></div> -->
+                        <!-- <a href="https://github.com/Abobo7/usque-android/releases" class="open-btn" target="_blank">打开链接</a> -->
+                    <!-- </div> -->
+                <!-- </div>	 -->
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Saman Aether</span><span class="tag">颜控</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/velnox4827/saman-aether</span></div>
+                        <a href="https://github.com/velnox4827/saman-aether/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Mqvpn</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/mp0rta/mqvpn/releases</span></div>
+                        <a href="https://github.com/mp0rta/mqvpn/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>	
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Zarp</span><span class="tag tag-featured">NEW</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/feg55/Zarp-Android</span></div>
+                        <a href="https://github.com/feg55/Zarp-Android/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>					
+				<div class="item-desc">各位小伙伴，别忘了在Github点点星Star！</div>					
+				<div class="item-desc">Usque、Aether重名太多，不利于传播，建议开发者另起名！</div>					
+			</div>
+			
+            <div class="group-card">
+                <div class="group-name">鸿蒙</div>
+				<div class="item-desc">暂无原生应用，先使用安卓安装包</div>	
+			</div>				
+            <div class="group-card">
+                <div class="group-name">iOS</div>
+				<div class="item-desc">暂无第三方MASQUE内核应用，仅有WARP官方客户端</div>	
+			</div>		
+			
+            <!-- <div class="group-card"> -->
+                <!-- <div class="group-name">macOS</div>    -->
+				<div class="link-row">
+                    <div class="item-header"><span class="item-title">Usque</span><span class="tag">U内核</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/JustinL330/usque-app</span></div>
+                        <a href="https://github.com/JustinL330/usque-app/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+				<!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">WARP 开关</span><span class="tag">U内核</span></div> -->
+                    <!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">github.com/EdmundMad0309/warp-masque-bypass</span></div> -->
+                        <!-- <a href="https://github.com/EdmundMad0309/warp-masque-bypass/releases" class="open-btn" target="_blank">打开链接</a> -->
+                    <!-- </div> -->
+                <!-- </div>	 -->
+				<!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">Zarp</span></div> -->
+                    <!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">github.com/ZarpVPN/Zarp-MacOS</span></div> -->
+                        <!-- <a href="https://github.com/ZarpVPN/Zarp-MacOS/releases" class="open-btn" target="_blank">打开链接</a> -->
+                    <!-- </div> -->
+                <!-- </div>				 -->
+				<!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">CFWarpd</span><span class="tag tag-featured">非安装包新手勿用</span><span class="tag">U内核</span></div> -->
+                    <!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">github.com/surendrajat/cfwarpd</span></div> -->
+                        <!-- <a href="https://github.com/surendrajat/cfwarpd" class="open-btn" target="_blank">打开链接</a> -->
+                    <!-- </div> -->
+                <!-- </div>				 -->
+			<!-- </div> -->
+			
+            <div class="group-card">
+                <div class="group-name">路由器</div>               
+				<div class="link-row">
+                    <div class="item-header"><span class="item-title">CFWARP-OPENWRT</span><span class="tag tag-featured">LuCI界面</span><span class="tag">U内核</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/BAzeRlok/CFWARP-OPENWRT</span></div>
+                        <a href="https://github.com/BAzeRlok/CFWARP-OPENWRT/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+				<div class="link-row">
+                    <div class="item-header"><span class="item-title">ACE</span><span class="tag tag-featured">LuCI界面</span><span class="tag">Mihomo内核</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/bluepebblex-dev/openwrt-ace</span></div>
+                        <a href="https://github.com/bluepebblex-dev/openwrt-ace" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+				<div class="link-row">
+                    <div class="item-header"><span class="item-title">Luci-App-Aether</span><span class="tag tag-featured">LuCI界面</span><span class="tag">A内核</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/Omarchy71/luci-app-aether</span></div>
+                        <a href="https://github.com/Omarchy71/luci-app-aether" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+				<div class="link-row">
+                    <div class="item-header"><span class="item-title">Openwrt-Usque</span><span class="tag tag-featured">LuCI界面</span><span class="tag">U内核</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/kenzok8/openwrt-usque</span></div>
+                        <a href="https://github.com/kenzok8/openwrt-usque" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+				<div class="link-row">
+                    <div class="item-header"><span class="item-title">imok</span><span class="tag tag-featured">LuCI界面</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/routepilot-lab/imok</span></div>
+                        <a href="https://github.com/routepilot-lab/imok" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+			</div>	
+			
+            <div class="group-card">
+                <div class="group-name">自建服务端<span class="tag">新手勿用</span></div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">VProxy</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">github.com/0x676e67/vproxy</span></div>
+						<a href="https://github.com/0x676e67/vproxy" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>					
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">Volto</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">github.com/vcarus/volto</span></div>
+						<a href="https://github.com/vcarus/volto" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>	
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">MASQUE Server</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">github.com/Vincent-bin/masque-server</span></div>
+						<a href="https://github.com/Vincent-bin/masque-server" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>
+				<!-- <div class="link-row"> -->
+					<!-- <div class="item-header"><span class="item-title">MASQUE Lite</span></div> -->
+					<!-- <div class="action-area"> -->
+						<!-- <div class="url-box"><span class="url-text">github.com/Piggy-Cat-bit-shadow/masque-lite</span></div> -->
+						<!-- <a href="https://github.com/Piggy-Cat-bit-shadow/masque-lite" class="open-btn" target="_blank">打开链接</a> -->
+					<!-- </div> -->
+				<!-- </div>	 -->
+			</div>
+</section>
+
+<section id="m-endpoint">
+            <h2>MASQUE 端点 Endpoint</h2>	
+			<div style="font-size: 0.8rem; color: var(--text-muted); margin: -15px 0 20px 20px;">文本格式"IP:端口@备注信息"</div>
+			<div class="group-card">
+				<div class="group-name">官方端点<span class="tag tag-featured">H3 H2 通用</span></div>
+				<div class="action-area" style="gap: 10px; flex-wrap: wrap; margin-bottom: 12px;">
+					<div class="url-box" style="flex: 1; min-width: 100px; padding: 0 10px;">
+						<select id="accountSelect" class="url-text"
+							style="width: 100%; background: transparent; border: none; outline: none; cursor: pointer; color: var(--text-main);">
+							<option value="warp" style="background-color: #f1f5f9; color: #000000;">WARP个人账号</option>
+							<option value="zt" style="background-color: #f1f5f9; color: #000000;">ZeroTrust团队账号</option>
+						</select>
+					</div>
+					<div class="url-box" style="flex: 1; min-width: 100px; padding: 0 10px;">
+						<select id="protocolSelect" class="url-text"
+							style="width: 100%; background: transparent; border: none; outline: none; cursor: pointer; color: var(--text-main);">
+							<option value="ipv4v6" style="background-color: #f1f5f9; color: #000000;">IPv4 + IPv6</option>
+							<option value="ipv4" style="background-color: #f1f5f9; color: #000000;">IPv4</option>
+							<option value="ipv6" style="background-color: #f1f5f9; color: #000000;">IPv6</option>
+						</select>
+					</div>
+					<div class="url-box" style="flex: 1; min-width: 100px; padding: 0 10px;">
+						<select id="portSelect" class="url-text"
+							style="width: 100%; background: transparent; border: none; outline: none; cursor: pointer; color: var(--text-main);">
+							<option value="default" style="background-color: #f1f5f9; color: #000000;">端口组合</option>
+							<option value="443" style="background-color: #f1f5f9; color: #000000;">443端口</option>
+							<!-- <option value="all" style="background-color: #f1f5f9; color: #000000;">全部端口</option> -->
+						</select>
+					</div>
+					<button class="copy-btn" onclick="openMasqueURL()">预览列表</button>
+				</div>
+				<div class="link-row">
+					<div class="action-area">
+						<div class="url-box" style="flex: 1; padding: 0 10px;">
+							<input type="text" id="masque-url-output" class="url-text" readonly
+								style="width: 100%; background: transparent; border: none; outline: none; color: #94a3b8; opacity: 0.8;"
+								placeholder="加载中...">
+						</div>
+						<button class="copy-btn" id="masqueCopyBtn" onclick="copyMasqueURL()">复制链接</button>
+					</div>
+				</div>
+				<div class="item-desc">不推荐端口1701、4500、500</div>
+			</div>
+			<script>
+var MO = (location.protocol === 'file:') ? 'https://masque.pages.dev' : location.origin;function updateMasqueURL(){const e=document.getElementById("accountSelect").value,t=document.getElementById("protocolSelect").value,n=document.getElementById("portSelect").value,o=document.getElementById("masque-url-output");o&&(o.value=`${MO}/endpoint/${e}-${t}-${n}.txt`)}function openMasqueURL(){const e=document.getElementById("masque-url-output");e&&e.value&&window.open(e.value,"_blank")}function copyMasqueURL(){const e=document.getElementById("masque-url-output"),t=document.getElementById("masqueCopyBtn");if(!e||!e.value||!t)return;const n=document.createElement("textarea");n.value=e.value,document.body.appendChild(n),n.select(),document.execCommand("copy"),document.body.removeChild(n);const o=t.innerText;t.innerText="成功复制",setTimeout(()=>{t.innerText=o},1500)}function initMasqueCard(){const e=document.getElementById("accountSelect"),t=document.getElementById("protocolSelect"),n=document.getElementById("portSelect");e&&t&&n&&(e.addEventListener("change",updateMasqueURL),t.addEventListener("change",updateMasqueURL),n.addEventListener("change",updateMasqueURL),updateMasqueURL())}document.addEventListener("DOMContentLoaded",initMasqueCard);</script>
+
+			<div class="group-card">
+				<div class="group-name">官方端点 H2<span class="tag tag-featured">H3不可用</span><span class="tag">每6小时随机</span></div>
+				<div class="action-area" style="gap: 10px; flex-wrap: wrap; margin-bottom: 12px;">
+					<div class="url-box" style="flex: 1; min-width: 100px; padding: 0 10px;">
+						<select id="h2AccountSelect" class="url-text"
+							style="width: 100%; background: transparent; border: none; outline: none; cursor: pointer; color: var(--text-main);">
+							<option value="warp" style="background-color: #f1f5f9; color: #000000;">WARP个人账号</option>
+							<option value="zt" style="background-color: #f1f5f9; color: #000000;">ZeroTrust团队账号</option>
+						</select>
+					</div>
+					<div class="url-box" style="flex: 1; min-width: 100px; padding: 0 10px;">
+						<select id="h2PortSelect" class="url-text"
+							style="width: 100%; background: transparent; border: none; outline: none; cursor: pointer; color: var(--text-main);">
+							<option value="default" style="background-color: #f1f5f9; color: #000000;">端口组合</option>
+							<option value="443" style="background-color: #f1f5f9; color: #000000;">443端口</option>
+						</select>
+					</div>
+					<div class="url-box" style="flex: 1; min-width: 100px; padding: 0 10px;">
+						<select id="h2CountSelect" class="url-text"
+							style="width: 100%; background: transparent; border: none; outline: none; cursor: pointer; color: var(--text-main);">
+							<option value="10" style="background-color: #f1f5f9; color: #000000;">随机10个</option>
+							<option value="20" style="background-color: #f1f5f9; color: #000000;" selected>随机20个</option>
+							<option value="30" style="background-color: #f1f5f9; color: #000000;">随机30个</option>
+							<option value="50" style="background-color: #f1f5f9; color: #000000;">随机50个</option>
+							<option value="100" style="background-color: #f1f5f9; color: #000000;">随机100个</option>
+							<option value="all" style="background-color: #f1f5f9; color: #000000;">全部IP</option>
+						</select>
+					</div>
+					<button class="copy-btn" onclick="openH2URL()">预览列表</button>
+				</div>
+				<div class="link-row">
+					<div class="action-area">
+						<div class="url-box" style="flex: 1; padding: 0 10px;">
+							<input type="text" id="h2-url-output" class="url-text" readonly
+								style="width: 100%; background: transparent; border: none; outline: none; color: #94a3b8; opacity: 0.8;"
+								placeholder="加载中...">
+						</div>
+						<button class="copy-btn" id="h2CopyBtn" onclick="copyH2URL()">复制链接</button>
+					</div>
+				</div>
+			</div>
+			<script>
+var MO = (location.protocol === 'file:') ? 'https://masque.pages.dev' : location.origin;function updateH2URL(){const e=document.getElementById("h2AccountSelect").value,t=document.getElementById("h2PortSelect").value,n=document.getElementById("h2CountSelect").value,o=document.getElementById("h2-url-output");o&&(o.value=`${MO}/endpoint/h2-random/${e}-${t}-${n}.txt`)}function openH2URL(){const e=document.getElementById("h2-url-output");e&&e.value&&window.open(e.value,"_blank")}function copyH2URL(){const e=document.getElementById("h2-url-output"),t=document.getElementById("h2CopyBtn");if(!e||!e.value||!t)return;const n=document.createElement("textarea");n.value=e.value,document.body.appendChild(n),n.select(),document.execCommand("copy"),document.body.removeChild(n);const o=t.innerText;t.innerText="成功复制",setTimeout(()=>{t.innerText=o},1500)}function initH2Card(){const e=document.getElementById("h2AccountSelect"),t=document.getElementById("h2PortSelect"),n=document.getElementById("h2CountSelect");e&&t&&n&&(e.addEventListener("change",updateH2URL),t.addEventListener("change",updateH2URL),n.addEventListener("change",updateH2URL),updateH2URL())}document.addEventListener("DOMContentLoaded",initH2Card);</script>
+
+			<div class="group-card">
+				<div class="group-name">第三方端点<span class="tag tag-featured">早中晚自动更新 (实验)</span><span class="tag">来自网友投稿</span></div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">WARP IPv4</span><span class="tag">资源少</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">https://masque.pages.dev/endpoint/3rd/warp-ipv4.txt</span></div>
+						<a class="copy-btn" href="/endpoint/3rd/warp-ipv4.txt" target="_blank" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">查看端点</a>
+					</div>
+				</div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">WARP IPv6</span><span class="tag">美国</span><span class="tag">德国</span><span class="tag">芬兰</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">https://masque.pages.dev/endpoint/3rd/warp-ipv6.txt</span></div>
+						<a class="copy-btn" href="/endpoint/3rd/warp-ipv6.txt" target="_blank" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">查看端点</a>
+					</div>
+				</div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">ZeroTrust IPv4</span><span class="tag">香港</span><span class="tag">日本</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">https://masque.pages.dev/endpoint/3rd/zt-ipv4.txt</span></div>
+						<a class="copy-btn" href="/endpoint/3rd/zt-ipv4.txt" target="_blank" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">查看端点</a>
+					</div>
+				</div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">ZeroTrust IPv6</span><span class="tag">美国</span><span class="tag">德国</span><span class="tag">芬兰</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">https://masque.pages.dev/endpoint/3rd/zt-ipv6.txt</span></div>
+						<a class="copy-btn" href="/endpoint/3rd/zt-ipv6.txt" target="_blank" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">查看端点</a>
+					</div>
+				</div>
+				<div class="item-desc">第三方端点可能会产生隐私安全问题，只建议使用官方端点</div>
+			</div>	
+
+			<div class="group-card">
+				<div class="group-name">FOFA 搜索第三方端点<span class="tag tag-featured">NEW</span></div>				
+                <div class="action-area" style="gap: 10px; flex-wrap: wrap; margin-bottom: 12px;">
+                    <div class="url-box"><span class="url-text">fofa.info</span></div>
+                    <a href="https://fofa.info/" class="open-btn" target="_blank">注册登录</a>
+                </div>	
+				<div class="action-area" style="gap: 10px; flex-wrap: wrap; margin-bottom: 12px;">				
+					<div class="url-box" style="flex: 1; min-width: 120px; padding: 0 10px;">
+						<select id="masqueRegion" class="url-text"
+							style="width: 100%; background: transparent; border: none; outline: none; cursor: pointer; color: var(--text-main);">
+							<option value="" selected style="background-color: #f1f5f9; color: #000000;">不限地区</option>
+							<option value="CN" style="background-color: #f1f5f9; color: #000000;">CN 中国</option>
+							<option value="HK" style="background-color: #f1f5f9; color: #000000;">HK 中国香港</option>
+							<option value="SG" style="background-color: #f1f5f9; color: #000000;">SG 新加坡</option>
+							<option value="KR" style="background-color: #f1f5f9; color: #000000;">KR 韩国</option>
+							<option value="JP" style="background-color: #f1f5f9; color: #000000;">JP 日本</option>
+							<option value="MY" style="background-color: #f1f5f9; color: #000000;">MY 马来西亚</option>
+							<option value="RU" style="background-color: #f1f5f9; color: #000000;">RU 俄罗斯</option>
+						</select>
+					</div>
+					<div class="url-box" style="flex: 1; min-width: 80px; padding: 0 10px;">
+						<select id="masquePort" class="url-text"
+							style="width: 100%; background: transparent; border: none; outline: none; cursor: pointer; color: var(--text-main);">
+							<option value="" selected style="background-color: #f1f5f9; color: #000000;">不限端口</option>
+							<option value="443" style="background-color: #f1f5f9; color: #000000;">443</option>
+							<option value="nonstandard" style="background-color: #f1f5f9; color: #000000;">非标端口</option>
+						</select>
+					</div>
+					<button class="copy-btn" onclick="openMasqueFOFA()">立即搜索</button>
+				</div>
+
+				<div class="link-row">
+					<div class="action-area">
+						<div class="url-box" style="flex: 1; padding: 0 10px;">
+							<input type="text" id="masque-command-input" class="url-text" readonly
+								style="width: 100%; background: transparent; border: none; outline: none; color: #94a3b8; opacity: 0.8;"
+								placeholder="查询语句将在此生成...">
+						</div>
+						<button class="copy-btn" onclick="copyMasqueCommand()">复制语句</button>
+					</div>
+				</div>
+			</div>
+			<script>function buildMasqueQuery(){const region=document.getElementById("masqueRegion").value;const port=document.getElementById("masquePort").value;let parts=['masque.cloudflareclient.com','asn!="13335"','asn!="395747"'];if(region){const field=region==="HK"?"region":"country";parts.push(`${field}="${region}"`)}if(port==="443"){parts.push('port="443"')}else if(port==="nonstandard"){parts.push('port!="443"')}return parts.join(" && ")}function safeBase64(str){const bytes=new TextEncoder().encode(str);let bin="";bytes.forEach(b=>{bin+=String.fromCharCode(b)});return btoa(bin)}function updateMasqueCommand(){const input=document.getElementById("masque-command-input");if(input)input.value=buildMasqueQuery()}function initMasque(){updateMasqueCommand();document.getElementById("masqueRegion").addEventListener("change",updateMasqueCommand);document.getElementById("masquePort").addEventListener("change",updateMasqueCommand)}function openMasqueFOFA(){const query=buildMasqueQuery();if(!query)return;window.open("https://fofa.info/result?qbase64="+safeBase64(query),"_blank")}function copyMasqueCommand(){const input=document.getElementById("masque-command-input");if(input&&input.value){input.select();input.setSelectionRange(0,input.value.length);document.execCommand("copy");const btn=event.target;const original=btn.innerText;btn.innerText="成功复制";setTimeout(()=>{btn.innerText=original},1500)}}document.addEventListener("DOMContentLoaded",initMasque);window.openMasqueFOFA=openMasqueFOFA;window.copyMasqueCommand=copyMasqueCommand;</script>
+
+            <div class="group-card">
+                <div class="item-header"><span class="item-title">Shodan</span><span class="tag">端点搜索</span></div>
+                <div class="action-area">
+                    <div class="url-box"><span class="url-text">shodan.io</span></div>
+                    <a href="https://www.shodan.io/search?query=hostname%3Amasque.cloudflareclient.com+-asn%3AAS13335+-asn%3AAS395747" class="open-btn" target="_blank">立即搜索</a>
+                </div>
+            </div>
+            <div class="group-card">
+                <div class="item-header"><span class="item-title">ZoomEye</span><span class="tag">端点搜索</span></div>
+                <div class="action-area">
+                    <div class="url-box"><span class="url-text">www.zoomeye.ai</span></div>
+                    <a href="https://www.zoomeye.ai/searchResult?q=Im1hc3F1ZS5jbG91ZGZsYXJlY2xpZW50LmNvbSIgJiYgYXNuIT0iMTMzMzUiICYmIGFzbiE9IjM5NTc0NyI%3D" class="open-btn" target="_blank">立即搜索</a>
+                </div>
+            </div>
+            <div class="group-card">
+                <div class="item-header"><span class="item-title">Censys</span><span class="tag">端点搜索</span></div>
+                <div class="action-area">
+                    <div class="url-box"><span class="url-text">search.censys.io</span></div>
+                    <a href="https://platform.censys.io/search?q=%22masque.cloudflareclient.com%22+and+not+host.autonomous_system.asn%3A+%7B13335%2C+395747%7D+" class="open-btn" target="_blank">立即搜索</a>
+                </div>
+            </div>
+            <div class="group-card"> 
+                <div class="item-header"><span class="item-title">端点批量测试</span></div>
+                <div class="action-area">
+                    <div class="url-box"><span class="url-text">github.com/121909/masque-speed</span></div>
+                    <a href="https://github.com/121909/masque-speed" class="open-btn" target="_blank">查看项目</a>
+                </div>
+            </div>
+            <div class="group-card"> 
+                <div class="item-header"><span class="item-title">端点投稿</span></div>
+				<div class="item-desc">搜索、自测和投稿：IP / 端口 / 落地 / 延迟 / 速度 / 是否为ZeroTrust端点</div>
+                <div class="action-area">
+                    <div class="url-box"><span class="url-text">masque.pages.dev/report/</span></div>
+                    <a href="/report/" class="open-btn" target="_blank">贡献端点</a>
+                </div>
+            </div>
+</section>
+
+<section id="m-clash">
+            <h2>Clash × MASQUE</h2>
+			<div class="group-card">
+                <!-- <div class="group-name">Usque .json 转 Clash .yaml</div>			 -->
+                <div class="group-name">MASQUE To Clash 转换器</div>			
+				<div class="link-row">
+                    <div class="item-header"><span class="item-title">一键转换 网页版</span><span class="tag tag-featured">11-19更新</span></div>
+					<div class="item-desc">一人一账号 / 多协议 / 多端点多端口组合 / 自定义配置 / 链式代理切换地区</div>	
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">m2c.pages.dev</span></div>
+                        <a href="https://m2c.pages.dev" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+				<!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">一键转换 Windows版</span><span class="tag tag-featured">0906</span></div> -->
+                    <!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">masque.pages.dev/Masque-To-Clash_Win_20260906.zip</span></div> -->
+                        <!-- <a href="Masque-To-Clash_Win_20260906.zip" class="open-btn" target="_blank">下载文件</a> -->
+                    <!-- </div> -->
+                <!-- </div> -->
+				<div class="item-desc">当有新的版本，建议定期重新转换生成配置文件，以免与部分客户端不兼容</div>									
+			</div>
+			<div class="group-card">
+                <div class="group-name">Clash客户端</div>			
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Clash Verge Rev</span><span class="tag">PC</span><span class="tag tag-featured">推荐</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/clash-verge-rev/clash-verge-rev</span>
+                        </div>
+                        <a href="https://github.com/clash-verge-rev/clash-verge-rev/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">FlClash</span><span class="tag">安卓/PC</span><span class="tag tag-featured">推荐</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/chen08209/FlClash</span></div>
+                        <a href="https://github.com/chen08209/FlClash/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">FlClash改包名版</span><span class="tag">鸿蒙</span><span class="tag tag-featured">NEW</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/freephilx/FlClash-Lite</span></div>
+                        <a href="https://github.com/freephilx/FlClash-Lite/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">FlClash鸿蒙版</span><span class="tag">鸿蒙</span><span class="tag tag-featured">NEW</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/tljk/FlClash-ohos</span></div>
+                        <a href="https://github.com/tljk/FlClash-ohos/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Clash Mi</span><span class="tag">iOS</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">apps.apple.com/us/app/id6744321968</span></div>
+                        <a href="https://apps.apple.com/us/app/id6744321968" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">Clash Hako</span><span class="tag">iOS</span></div> -->
+                    <!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">apps.apple.com/us/app/id6794257189</span></div> -->
+                        <!-- <a href="https://apps.apple.com/us/app/id6794257189" class="open-btn" target="_blank">打开链接</a> -->
+                    <!-- </div> -->
+                <!-- </div>			 -->
+                <!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">ClashX.Meta</span><span class="tag">macOS</span></div> -->
+                    <!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">github.com/MetaCubeX/ClashX.Meta</span></div> -->
+                        <!-- <a href="https://github.com/MetaCubeX/ClashX.Meta/releases" class="open-btn" target="_blank">打开链接</a> -->
+                    <!-- </div> -->
+                <!-- </div> -->
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">OpenClash</span><span class="tag">路由器</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/vernesong/OpenClash</span></div>
+                        <a href="https://github.com/vernesong/OpenClash" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">Clash Party</span><span class="tag">含Smart内核</span></div> -->
+                    <!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">github.com/mihomo-party-org/clash-party</span></div> -->
+                        <!-- <a href="https://github.com/mihomo-party-org/clash-party/releases" class="open-btn" target="_blank">打开链接</a> -->
+                    <!-- </div> -->
+                <!-- </div>	 -->
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">更多Clash客户端</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">bestcf.pages.dev/#khd</span></div>
+                        <a href="https://bestcf.pages.dev/#khd" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>					
+			</div>
+</section>
+
+<section id="m-xray">
+            <h2>Xray × MASQUE</h2>
+			<div class="group-card">
+                <div class="group-name">MASQUE To Xray 转换器</div>			
+				<div class="link-row">
+                    <div class="item-header"><span class="item-title">一键转换 网页版</span><span class="tag tag-featured">11-19更新</span></div>
+					<div class="item-desc">一人一账号 / 多协议 / 分片伪装 / 多端点多端口组合 / 自定义配置</div>	
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">m2xray.pages.dev</span></div>
+                        <a href="https://m2xray.pages.dev/" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+				<div class="item-desc">当有新的版本，建议定期重新转换生成配置文件，以免与部分客户端不兼容</div>									
+			</div>
+			<div class="group-card">
+                <div class="group-name">Xray客户端</div>			
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">v2rayN</span><span class="tag">PC</span><span class="tag tag-featured">推荐</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/2dust/v2rayN</span></div>
+                        <a href="https://github.com/2dust/v2rayN/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>	
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Throne</span><span class="tag">PC</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/throneproj/Throne</span></div>
+                        <a href="https://github.com/throneproj/Throne/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+                <!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">Happ</span><span class="tag">PC</span></div> -->
+                    <!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">github.com/Happ-proxy/happ-desktop</span></div> -->
+                        <!-- <a href="https://github.com/Happ-proxy/happ-desktop/releases" class="open-btn" target="_blank">打开链接</a> -->
+                    <!-- </div> -->
+                <!-- </div>				 -->
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">v2rayNG</span><span class="tag">安卓</span><span class="tag tag-featured">推荐</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/2dust/v2rayNG</span></div>
+                        <a href="https://github.com/2dust/v2rayNG/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">AsteriskNG</span><span class="tag">安卓</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/Asterisk4Magisk/AsteriskNG</span></div>
+                        <a href="https://github.com/Asterisk4Magisk/AsteriskNG/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">Happ</span><span class="tag">安卓</span></div> -->
+                    <!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">github.com/Happ-proxy/happ-android</span></div> -->
+                        <!-- <a href="https://github.com/Happ-proxy/happ-android/releases" class="open-btn" target="_blank">打开链接</a> -->
+                    <!-- </div> -->
+                <!-- </div>				 -->
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">v2rayH</span><span class="tag">鸿蒙</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/JuckyLee668/v2rayH</span></div>
+                        <a href="https://github.com/JuckyLee668/v2rayH" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Hey</span><span class="tag">鸿蒙</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/popsiclelmlm/Hey</span></div>
+                        <a href="https://github.com/popsiclelmlm/Hey" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Streisand</span><span class="tag">iOS</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">apps.apple.com/us/app/id6450534064</span></div>
+                        <a href="https://apps.apple.com/us/app/id6450534064" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Happ</span><span class="tag">iOS</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">apps.apple.com/us/app/id6504287215</span></div>
+                        <a href="https://apps.apple.com/us/app/happ-proxy-utility/id6504287215" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">OneXray</span><span class="tag">iOS</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">apps.apple.com/us/app/id6745748773</span></div>
+                        <a href="https://apps.apple.com/us/app/id6745748773" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <!-- <div class="link-row"> -->
+                    <!-- <div class="item-header"><span class="item-title">PassWall 2</span><span class="tag">路由器</span></div> -->
+                    <!-- <div class="action-area"> -->
+                        <!-- <div class="url-box"><span class="url-text">github.com/Openwrt-Passwall/openwrt-passwall2</span> -->
+                        <!-- </div> -->
+                        <!-- <a href="https://github.com/Openwrt-Passwall/openwrt-passwall2/releases" class="open-btn" target="_blank">打开链接</a> -->
+                    <!-- </div> -->
+                <!-- </div>								 -->
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">更多Xray客户端</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">bestcf.pages.dev/#khd</span></div>
+                        <a href="https://bestcf.pages.dev/#khd" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>	
+			<div class="item-desc">必须使用最新版本Xray客户端和Xray内核</div>		
+			</div>
+</section>
+
+<section id="m-singbox">
+            <h2>Singbox × MASQUE</h2>
+			<div class="group-card">
+                <div class="group-name">MASQUE To Singbox 转换器</div>			
+				<div class="link-row">
+                    <div class="item-header"><span class="item-title">一键转换 网页版</span><span class="tag tag-featured">11-19更新</span></div>
+					<div class="item-desc">一人一账号 / 多协议 / 多端点多端口组合 / 自定义配置</div>	
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">m2singbox.pages.dev</span></div>
+                        <a href="https://m2singbox.pages.dev/" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+				<div class="item-desc">当有新的版本，建议定期重新转换生成配置文件，以免与客户端不兼容</div>									
+			</div>
+			<div class="group-card">
+                <div class="group-name">SingBox客户端</div>				
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Throne 电脑版 (原Nekoray)</span><span class="tag">Win</span><span class="tag">Mac</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/throneproj/Throne</span></div>
+                        <a href="https://github.com/throneproj/Throne/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Throne 安卓版 (原NekoBox)</span></div>
+					<div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/throneproj/ThroneForAndroid</span>
+                        </div>
+                        <a href="https://github.com/throneproj/ThroneForAndroid/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+            <div class="item-desc">Sing-box原版内核还未原生支持MASQUE协议，当前仅支持Throne最新版客户端 (自带Singbox分支)</div>	
+			</div>
+</section>
+
+<section id="m-hiddify">
+            <h2>Hiddify × MASQUE</h2>
+			<div class="group-card">
+                <div class="group-name">MASQUE To Hiddify 转换器</div>			
+				<div class="link-row">
+                    <div class="item-header"><span class="item-title">一键转换 网页版</span><span class="tag tag-featured">11-19更新</span></div>
+					<div class="item-desc">一人一账号 / 双协议组合 / 多端点多端口组合 / 自定义配置</div>	
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">m2hiddify.pages.dev</span></div>
+                        <a href="https://m2hiddify.pages.dev/" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+				<div class="item-desc">当有新的版本，建议定期重新转换生成配置文件，以免与客户端不兼容</div>									
+			</div>
+			<div class="group-card">
+                <div class="group-name">Hiddify客户端</div>				
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Hiddify</span><span class="tag">Win</span><span class="tag">安卓</span><span class="tag">Mac</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/hiddify/hiddify-app</span></div>
+                        <a href="https://github.com/hiddify/hiddify-app/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">iOS版</span><span class="tag">免费</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">apps.apple.com/us/app/id6596777532</span></div>
+                        <a href="https://apps.apple.com/us/app/id6596777532" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+            <div class="item-desc">必须安装 v5.5.5 之后的新版本</div>	
+			</div>
+</section>
+
+<section id="m-xhj">
+            <h2>小火箭 × MASQUE</h2>
+			<div class="group-card">
+                <div class="group-name">MASQUE To Shadowrocket 转换器</div>			
+				<div class="link-row">
+                    <div class="item-header"><span class="item-title">一键转换 网页版</span><span class="tag tag-featured">11-19更新</span></div>
+					<div class="item-desc">一人一账号 / 双协议组合 / 多端点多端口组合 / 自定义配置</div>	
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">m2xhj.pages.dev</span></div>
+                        <a href="https://m2xhj.pages.dev/" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+				<div class="item-desc">当有新的版本，建议定期重新转换生成配置文件，以免与客户端不兼容</div>									
+			</div>
+			<div class="group-card">
+                <div class="group-name">小火箭客户端</div>				
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Shadowrocket</span><span class="tag">iOS</span><span class="tag">Mac</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">apps.apple.com/app/id932747118</span></div>
+                        <a href="https://apps.apple.com/app/shadowrocket/id932747118" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">分流规则</span><span class="tag">懒人配置</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">johnshall.github.io/Shadowrocket-ADBlock-Rules-Forever</span></div>
+                        <a href="https://johnshall.github.io/Shadowrocket-ADBlock-Rules-Forever/" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+            <div class="item-desc">必须安装 v2.2.90 之后的新版本</div>	
+			</div>
+</section>
+
+<section id="m-core">
+	
+			<h2>MASQUE 内核 Core</h2>
+            <div class="group-card">
+                <div class="group-name">专用内核<span class="tag">Win/Mac/Linux</span></div>
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Usque (U内核)</span><span class="tag">简单稳定</span><span class="tag tag-featured">推荐</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/Diniboy1123/usque</span></div>
+                        <a href="https://github.com/Diniboy1123/usque/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Aether (A内核)</span><span class="tag">功能丰富</span><span class="tag">多协议</span></div>
+                    <!-- <div class="item-desc">如果主要用于AI，尝试Gool嵌套模式(WiW/WoW/WARPx2)</div> -->
+					<div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/CluvexStudio/Aether</span></div>
+                        <a href="https://github.com/CluvexStudio/Aether/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">WarpScout (S内核)</span><span class="tag">潜力股</span><span class="tag">优选功能</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/vernette/warpscout</span></div>
+                        <a href="https://github.com/vernette/warpscout/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>			
+				<div class="item-desc">各位小伙伴，别忘了在Github点点星Star！</div>
+				<div class="item-desc">侧重稳定选U内核，侧重功能选A内核，侧重安全选CF官方WARP客户端</div>
+			</div>	
+            <div class="group-card">
+                <div class="group-name">大而全内核<span class="tag">支持WARP MASQUE</span></div>
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Mihomo (Clash Meta)</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/MetaCubeX/mihomo</span></div>
+                        <a href="https://github.com/MetaCubeX/mihomo" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">Xray</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/XTLS/Xray-core</span></div>
+                        <a href="https://github.com/XTLS/Xray-core" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>				
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">SingBox 分支 Lx版</span><span class="tag">精简更适合WARP</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/Leadaxe/sing-box-lx</span></div>
+                        <a href="https://github.com/Leadaxe/sing-box-lx/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>					
+                <div class="link-row">
+                    <div class="item-header"><span class="item-title">SingBox 分支 扩展版</span></div>
+                    <div class="action-area">
+                        <div class="url-box"><span class="url-text">github.com/shtorm-7/sing-box-extended</span></div>
+                        <a href="https://github.com/shtorm-7/sing-box-extended/releases" class="open-btn" target="_blank">打开链接</a>
+                    </div>
+                </div>
+				<div class="item-desc">理性上建议用老牌内核，感性上希望多用专用内核，推动MASQUE更加完善</div>	
+			</div>
+            <div class="group-card">
+                <div class="group-name">更多内核</div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">Masqr (M内核)</span><span class="tag">潜力股</span><span class="tag">高性能</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">github.com/Wiuvel/masqr</span></div>
+						<a href="https://github.com/Wiuvel/masqr/releases" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>					
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">USCF</span><span class="tag">基于Usque</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">github.com/HynoR/uscf</span></div>
+						<a href="https://github.com/HynoR/uscf" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>				
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">Masque Plus</span><span class="tag">基于Usque</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">github.com/ircfspace/masque-plus</span></div>
+						<a href="https://github.com/ircfspace/masque-plus" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">Masque-go</span><span class="tag">开发库</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">github.com/quic-go/masque-go</span></div>
+						<a href="https://github.com/quic-go/masque-go/releases" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>	
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">Google QUICHE</span><span class="tag">MASQUE组件</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">github.com/google/quiche/tree/main/quiche/quic/masque</span></div>
+						<a href="https://github.com/google/quiche/tree/main/quiche/quic/masque" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>					
+			</div>
+</section>
+
+<section id="m-tools">
+			<h2>配套工具 Tools</h2>	
+						
+            <div class="group-card"> 
+                <div class="item-header"><span class="item-title">MASQUE 一键注册 Windows脚本</span><span class="tag tag-featured">推荐</span></div>
+				<div class="item-desc">与Usque内核配置文件数据格式一致</div>	
+                <div class="action-area">
+                    <div class="url-box"><span class="url-text">m2c.pages.dev/Usque-20260829.zip</span></div>
+                    <a href="https://m2c.pages.dev/Usque-20260829.zip" class="open-btn" target="_blank">打开链接</a>
+                </div>
+            </div>			
+            <div class="group-card"> 
+                <div class="item-header"><span class="item-title">MASQUE 一键注册 网页版</span><span class="tag tag-featured">NEW</span></div>
+				<div class="item-desc">适合手机和Mac用户 / 与Usque内核配置文件数据格式一致</div>	
+                <div class="action-area">
+                    <div class="url-box"><span class="url-text">usque.pages.dev</span></div>
+                    <a href="https://usque.pages.dev/" class="open-btn" target="_blank">打开链接</a>
+                </div>
+            </div>	
+            <div class="group-card"> 
+                <div class="item-header"><span class="item-title">ZeroTrust 注册专用</span><span class="tag tag-featured">NEW</span></div>
+				<div class="item-desc">与Usque内核配置文件数据格式一致 / 只能使用ZeroTrust专用端点</div>	
+                <div class="action-area">
+                    <div class="url-box"><span class="url-text">本站 /zt/ 子页</span></div>
+                    <a href="/zt/" class="open-btn" target="_blank">打开链接</a>
+                </div>
+            </div>
+
+			<div class="group-card">
+				<div class="group-name">SNI伪装 域名合集<span class="tag tag-featured">NEW</span></div>
+				<div class="action-area" style="gap: 10px; flex-wrap: wrap; margin-bottom: 12px;">
+					<div class="url-box" style="flex: 1; min-width: 200px; padding: 0 10px;">
+						
+						<select id="warpSNISelect" class="url-text" style="width: 100%; background: transparent; border: none; outline: none; cursor: pointer; color: var(--text-main);">
+							<option value="www.cloudflare.com">Cloudflare 官网 | www.cloudflare.com</option>
+							<option value="cdn.jsdelivr.net">CDN分发 | cdn.jsdelivr.net</option>
+							<option value="www.speedtest.net">SpeedTest | www.speedtest.net</option>
+							<option value="speed.cloudflare.com">Cloudflare 测速 | speed.cloudflare.com</option>
+							<option value="cloudflare.dev">Cloudflare 开发者 | cloudflare.dev</option>
+							<option value="research.cloudflare.com">Cloudflare 研究团队 | research.cloudflare.com</option>							
+							<option value="www.microsoft.com">微软 | www.microsoft.com</option>
+							<option value="www.apple.com">苹果 | www.apple.com</option>
+							<option value="www.bing.com">必应 | www.bing.com</option>
+							<!-- <option value="www.lenovo.com">联想 | www.lenovo.com</option> -->
+							<!-- <option value="www.hp.com">惠普 | www.hp.com</option> -->
+							<!-- <option value="www.dell.com">戴尔 | www.dell.com</option> -->
+							<!-- <option value="www.samsung.com">三星 | www.samsung.com</option> -->
+							<!-- <option value="www.sony.com">索尼 | www.sony.com</option> -->
+							<!-- <option value="www.nestle.com">雀巢 | www.nestle.com</option> -->
+							<!-- <option value="www.ikea.com">宜家 | www.ikea.com</option> -->
+							<!-- <option value="www.anta.com">安踏 | www.anta.com</option> -->
+							<!-- <option value="www.lining.com">李宁 | www.lining.com</option> -->
+							<!-- <option value="www.nike.com">耐克 | www.nike.com</option> -->
+							<!-- <option value="www.adidas.com">阿迪 | www.adidas.com</option> -->
+							<option value="www.allianz.com">安联 | www.allianz.com</option>
+							<option value="www.nvidia.com">英伟达 | www.nvidia.com</option>
+							<option value="www.amazon.com">亚马逊 | www.amazon.com</option>
+							<option value="www.oracle.com">甲骨文 | www.oracle.com</option>
+							<!-- <option value="www.kfc.com">肯德基 | www.kfc.com</option> -->
+							<!-- <option value="www.mcdonalds.com">麦当劳 | www.mcdonalds.com</option> -->
+							<!-- <option value="www.decathlon.com">迪卡侬 | www.decathlon.com</option> -->
+							<!-- <option value="www.loreal.com">欧莱雅 | www.loreal.com</option> -->
+							<!-- <option value="www.deepseek.com">深度求索 | www.deepseek.com</option> -->
+							<!-- <option value="www.kimi.ai">月之暗面 | www.kimi.ai</option> -->
+							<!-- <option value="www.unilever.com">联合利华 | www.unilever.com</option> -->
+							<!-- <option value="www.luckincoffee.com">瑞幸咖啡 | www.luckincoffee.com</option> -->
+							<!-- <option value="www.mxbc.com">蜜雪冰城 | www.mxbc.com</option> -->
+							<option value="www.um.edu.mo">澳门大学 | www.um.edu.mo</option>
+							<option value="www.hku.hk">香港大学 | www.hku.hk</option>
+							<option value="www.ntu.edu.sg">南洋理工 | www.ntu.edu.sg</option>
+							<option value="www.harvard.edu">哈佛大学 | www.harvard.edu</option>
+							<option value="www.mit.edu">麻省理工 | www.mit.edu</option>
+							<option value="www.stanford.edu">斯坦福大学 | www.stanford.edu</option>							
+
+							<option value="consumer-masque.cloudflareclient.com">MASQUE默认 | consumer-masque.cloudflareclient.com (不推荐)</option>
+							<option value="zt-masque.cloudflareclient.com">ZeroTrust默认 | zt-masque.cloudflareclient.com (不推荐)</option>
+						</select>
+					</div>
+					<button class="copy-btn" id="warpSNICopyBtn" onclick="warpSNICopyURL()">复制域名</button>
+				</div>
+				<!-- <div class="item-desc">可以是任意域名，一般不会导致无法连接，原则是可直连访问且业务合规的网站，建议从EDT优选域名(大型跨国企业)中选择</div> -->
+			</div>
+			<script>function warpSNICopyURL(){const e=document.getElementById("warpSNISelect"),t=document.getElementById("warpSNICopyBtn");if(e&&t&&e.value){const n=document.createElement("textarea");n.value=e.value,document.body.appendChild(n),n.select();try{if(document.execCommand("copy")){const e=t.innerText;t.innerText="成功复制",setTimeout(()=>{t.innerText=e},1500)}}catch(e){console.error(e)}finally{document.body.removeChild(n)}}}document.addEventListener("DOMContentLoaded",(()=>{const e=document.getElementById("warpSNISelect");if(e&&e.options.length>0){e.selectedIndex=Math.floor(Math.random()*e.options.length)}}));</script>				
+
+			
+			
+
+			
+			
+
+			
+			
+					
+			<div class="group-card">
+				<div class="group-name">延迟测试链接<span class="tag tag-featured">NEW</span></div>
+				<div class="action-area" style="gap: 10px; flex-wrap: wrap; margin-bottom: 12px;">
+					<div class="url-box" style="flex: 1; min-width: 200px; padding: 0 10px;">
+						
+						<select id="latencyTestSelect" class="url-text" style="width: 100%; background: transparent; border: none; outline: none; cursor: pointer; color: var(--text-main);">
+							<option value="https://cp.cloudflare.com/generate_204">https://cp.cloudflare.com/generate_204 (默认)</option>
+							<option value="https://cloudflare.com/cdn-cgi/trace">https://cloudflare.com/cdn-cgi/trace</option>
+							<option value="https://cp.cloudflare.com">https://cp.cloudflare.com</option>
+							<option value="https://connectivity.cloudflareclient.com/cdn-cgi/trace">https://connectivity.cloudflareclient.com/cdn-cgi/trace</option>
+							<option value="https://speed.cloudflare.com/meta">https://speed.cloudflare.com/meta</option>
+							<option value="http://latency-test.skk.moe/endpoint">http://latency-test.skk.moe/endpoint</option>
+						</select>
+					</div>
+					<button class="copy-btn" id="latencyTestCopyBtn" onclick="latencyTestCopyURL()">复制链接</button>
+				</div>
+				<div class="item-desc">复制粘贴到客户端中或配置文件中</div>
+			</div>
+			<script>function latencyTestCopyURL(){const e=document.getElementById("latencyTestSelect"),t=document.getElementById("latencyTestCopyBtn");if(e&&t&&e.value){const n=document.createElement("textarea");n.value=e.value,document.body.appendChild(n),n.select();try{if(document.execCommand("copy")){const e=t.innerText;t.innerText="成功复制",setTimeout(()=>{t.innerText=e},1500)}}catch(e){console.error(e)}finally{document.body.removeChild(n)}}}document.addEventListener("DOMContentLoaded",(()=>{const e=document.getElementById("latencyTestSelect");if(e&&e.options.length>0){e.selectedIndex=0}}));</script>				       
+
+			
+
+            <div class="group-card">
+                <div class="group-name">更多工具</div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">Zero Trust WARP 工具箱</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">github.com/BlizzardSaber/zerotrust-warp-masque</span></div>
+						<a href="https://github.com/BlizzardSaber/zerotrust-warp-masque" class="open-btn" target="_blank">打开链接</a>
+					</div>						
+				</div>	
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">cfwarp转换工具集</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">github.com/juerson/cfwarp-converter</span></div>
+						<a href="https://github.com/juerson/cfwarp-converter" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>				
+			</div>
+</section>
+
+<section id="m-guide">
+            <h2>MASQUE 教程 Tutorials</h2>
+            <div class="group-card">
+                <div class="item-header"><span class="item-title">视频 | 新手1秒实现科学上网</span></div>
+                <div class="action-area">
+                    <div class="url-box"><span class="url-text">www.youtube.com/watch?v=Kmf9U1XDUEs</span></div>
+                    <a href="https://www.youtube.com/watch?v=Kmf9U1XDUEs" class="open-btn" target="_blank">打开链接</a>
+                </div>
+            </div>
+            <!-- <div class="group-card"> -->
+                <!-- <div class="item-header"><span class="item-title">视频 | PC分流方案 3款内核</span></div> -->
+                <!-- <div class="action-area"> -->
+                    <!-- <div class="url-box"><span class="url-text">www.youtube.com/watch?v=5E0fG91dibc</span></div> -->
+                    <!-- <a href="https://www.youtube.com/watch?v=5E0fG91dibc" class="open-btn" target="_blank">打开链接</a> -->
+                <!-- </div> -->
+            <!-- </div>	 -->
+            <div class="group-card">
+                <div class="item-header"><span class="item-title">视频 | 安卓分流第一期 2款APP</span></div>
+                <div class="action-area">
+                    <div class="url-box"><span class="url-text">www.youtube.com/watch?v=zRlOuilDLP8</span></div>
+                    <a href="https://www.youtube.com/watch?v=zRlOuilDLP8" class="open-btn" target="_blank">打开链接</a>
+                </div>
+            </div>
+            <div class="group-card">
+                <div class="item-header"><span class="item-title">视频 | 安卓分流第二期 新黑马x2</span></div>
+                <div class="action-area">
+                    <div class="url-box"><span class="url-text">www.youtube.com/watch?v=OyRS-PM8pNo</span></div>
+                    <a href="https://www.youtube.com/watch?v=OyRS-PM8pNo" class="open-btn" target="_blank">打开链接</a>
+                </div>
+            </div>	
+            <div class="group-card">
+                <div class="item-header"><span class="item-title">视频 | 1分钟让Clash用上MASQUE</span></div>
+                <div class="action-area">
+                    <div class="url-box"><span class="url-text">www.youtube.com/watch?v=8A05XB1NG_I</span></div>
+                    <a href="https://www.youtube.com/watch?v=8A05XB1NG_I" class="open-btn" target="_blank">打开链接</a>
+                </div>
+            </div>
+            <!-- <div class="group-card"> -->
+                <!-- <div class="item-header"><span class="item-title">视频 | MASQUE 评论区问题&解决方案</span><span class="tag tag-featured">NEW</span></div> -->
+                <!-- <div class="action-area"> -->
+                    <!-- <div class="url-box"><span class="url-text">www.youtube.com/watch?v=5CBeO-BVpDo</span></div> -->
+                    <!-- <a href="https://www.youtube.com/watch?v=5CBeO-BVpDo" class="open-btn" target="_blank">打开链接</a> -->
+                <!-- </div> -->
+            <!-- </div> -->
+            <div class="group-card">
+                <div class="item-header"><span class="item-title">视频 | MASQUE 切换各国IP 稳定用AI</span></div>
+                <div class="action-area">
+                    <div class="url-box"><span class="url-text">https://www.youtube.com/watch?v=E9NlMzFv7SI</span></div>
+                    <a href="https://www.youtube.com/watch?v=E9NlMzFv7SI" class="open-btn" target="_blank">打开链接</a>
+                </div>
+            </div>				
+            <div class="group-card">
+                <div class="item-header"><span class="item-title">图文 | Clash Mihomo MASQUE配置说明</span></div>
+                <div class="action-area">
+                    <div class="url-box"><span class="url-text">wiki.metacubex.one/config/proxies/masque/</span></div>
+                    <a href="https://wiki.metacubex.one/config/proxies/masque/" class="open-btn" target="_blank">打开链接</a>
+                </div>
+            </div>	
+            <div class="group-card">
+                <div class="item-header"><span class="item-title">图文 | Xray内核 MASQUE配置说明</span></div>
+                <div class="action-area">
+                    <div class="url-box"><span class="url-text">xtls.github.io/config/outbounds/masque.html</span></div>
+                    <a href="https://xtls.github.io/config/outbounds/masque.html" class="open-btn" target="_blank">打开链接</a>
+                </div>
+            </div>
+            <div class="group-card">
+                <div class="item-header"><span class="item-title">图文 | Throne 教程和配置说明</span></div>
+                <div class="action-area">
+                    <div class="url-box"><span class="url-text">throneproj.github.io/zh/</span></div>
+                    <a href="https://throneproj.github.io/zh/" class="open-btn" target="_blank">打开链接</a>
+                </div>
+            </div>
+			<div class="group-card">
+                <div class="item-header"><span class="item-title">图文 | iOS小火箭Shadowrocket 教程</span></div>
+                <div class="action-area">
+                    <div class="url-box"><span class="url-text">lowertop.github.io/Shadowrocket/</span></div>
+                    <a href="https://lowertop.github.io/Shadowrocket/" class="open-btn" target="_blank">打开链接</a>
+                </div>
+            </div>			
+            <!-- <div class="group-card"> -->
+                <!-- <div class="item-header"><span class="item-title">Cloudflare WARP 官方客户端 (待发布)</span></div> -->
+                <!-- <div class="action-area"> -->
+                    <!-- <div class="url-box"><span class="url-text">www.youtube.com/@zhenxiangdinglv</span></div> -->
+                    <!-- <a href="https://www.youtube.com/@zhenxiangdinglv" class="open-btn" target="_blank">打开链接</a> -->
+                <!-- </div> -->
+            <!-- </div> -->
+            <!-- <div class="group-card"> -->
+                <!-- <div class="item-header"><span class="item-title">优选Endpoint端点IP/连通性测试/SNI等 (待发布)</span></div> -->
+                <!-- <div class="action-area"> -->
+                    <!-- <div class="url-box"><span class="url-text">www.youtube.com/@zhenxiangdinglv</span></div> -->
+                    <!-- <a href="https://www.youtube.com/@zhenxiangdinglv" class="open-btn" target="_blank">打开链接</a> -->
+                <!-- </div> -->
+            <!-- </div>			 -->
+</section>
+
+<section id="m-warp">
+			<h2>WARP 官方 Official</h2>
+			<div class="group-card">
+				<div class="group-name">官网</div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">多平台</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">one.one.one.one/zh-Hans/</span></div>
+						<a href="https://one.one.one.one/zh-Hans/" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>
+			</div>
+			<div class="group-card">
+				<div class="group-name">Windows</div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">新版二合一</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">downloads.cloudflareclient.com/v1/download/windows/ga</span></div>
+						<a href="https://downloads.cloudflareclient.com/v1/download/windows/ga" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>
+			</div>			
+			<div class="group-card">
+				<div class="group-name">安卓</div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">旧版WARP</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone</span></div>
+						<a href="https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">新版ONE</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">play.google.com/store/apps/details?id=com.cloudflare.cloudflareoneagent</span></div>
+						<a href="https://play.google.com/store/apps/details?id=com.cloudflare.cloudflareoneagent" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>
+			</div>
+			<div class="group-card">
+				<div class="group-name">iOS</div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">旧版WARP</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">apps.apple.com/us/app/id1423538627</span></div>
+						<a href="https://apps.apple.com/us/app/id1423538627" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">新版ONE</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">apps.apple.com/us/app/id6443476492</span></div>
+						<a href="https://apps.apple.com/us/app/id6443476492" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>
+			</div>
+			<div class="group-card">
+				<div class="group-name">macOS</div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">新版二合一</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">downloads.cloudflareclient.com/v1/download/macos/ga</span></div>
+						<a href="https://downloads.cloudflareclient.com/v1/download/macos/ga" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>
+			</div>
+			<div class="group-card">
+				<div class="group-name">Linux</div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">Ubuntu</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">pkg.cloudflareclient.com/#ubuntu</span></div>
+						<a href="https://pkg.cloudflareclient.com/#ubuntu" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">Debian</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">pkg.cloudflareclient.com/#debian</span></div>
+						<a href="https://pkg.cloudflareclient.com/#debian" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">RedHat</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">pkg.cloudflareclient.com/#rhel</span></div>
+						<a href="https://pkg.cloudflareclient.com/#rhel" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>				
+				</div>
+			</div>			
+			<div class="group-card">
+				<div class="group-name">历史版本</div>
+				<div class="link-row">
+					<div class="item-header"><span class="item-title">各平台历史版本下载</span></div>
+					<div class="action-area">
+						<div class="url-box"><span class="url-text">developers.cloudflare.com/cloudflare-one/team-and-resources/devices/cloudflare-one-client/download/</span></div>
+						<a href="https://developers.cloudflare.com/cloudflare-one/team-and-resources/devices/cloudflare-one-client/download/" class="open-btn" target="_blank">打开链接</a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="group-card">
+				<div class="group-name">WARP 命令合集<span class="tag tag-featured">NEW</span></div>
+				<div class="action-area" style="gap: 10px; flex-wrap: wrap; margin-bottom: 12px;">
+					<div class="url-box" style="flex: 3; min-width: 200px; padding: 0 10px;">
+						<select id="warpCommandSelect" class="url-text"
+							style="width: 100%; background: transparent; border: none; outline: none; cursor: pointer; color: var(--text-main);">
+							<option value="warp-cli status" style="background-color: #f1f5f9; color: #000000;">查看当前WARP的连接状态和网络详情</option>
+							<option value="warp-cli connect" style="background-color: #f1f5f9; color: #000000;">建立与WARP服务的VPN连接</option>
+							<option value="warp-cli disconnect" style="background-color: #f1f5f9; color: #000000;">断开当前的WARP VPN连接</option>
+							<option value="warp-cli registration new" style="background-color: #f1f5f9; color: #000000;">首次使用，生成并注册新设备</option>
+							<option value="warp-cli registration show" style="background-color: #f1f5f9; color: #000000;">查看当前设备的注册信息和账户类型</option>
+							<option value="warp-cli account" style="background-color: #f1f5f9; color: #000000;">查看当前账户状态信息，如WARP+剩余流量</option>
+							<option value="warp-cli mode warp" style="background-color: #f1f5f9; color: #000000;">切换到标准全局VPN代理模式</option>
+							<option value="warp-cli mode proxy" style="background-color: #f1f5f9; color: #000000;">切换到仅本地SOCKS5代理模式</option>
+							<option value="warp-cli proxy port" style="background-color: #f1f5f9; color: #000000;">设置本地SOCKS5代理模式的监听端口</option>
+							<option value="warp-cli mode doh" style="background-color: #f1f5f9; color: #000000;">切换到DNS over HTTPS模式（仅加密DNS查询）</option>
+							<option value="warp-cli tunnel protocol set MASQUE" style="background-color: #f1f5f9; color: #000000;">将隧道协议设置为MASQUE（新版默认）</option>
+							<option value="warp-cli tunnel protocol set WireGuard" style="background-color: #f1f5f9; color: #000000;">将隧道协议切换为经典WireGuard</option>
+							<option value="warp-cli tunnel endpoint set IP:PORT" style="background-color: #f1f5f9; color: #000000;">强制指定自定义的接入端点</option>
+							<option value="warp-cli tunnel endpoint reset" style="background-color: #f1f5f9; color: #000000;">清除自定义的接入端点，恢复官方默认节点</option>
+							<option value="warp-cli registration license" style="background-color: #f1f5f9; color: #000000;">激活WARP+或WARP+ Unlimited的许可证密钥</option>
+							<option value="warp-cli registration delete" style="background-color: #f1f5f9; color: #000000;">删除当前设备的注册信息并重置账号</option>
+							<option value="warp-cli dns families off" style="background-color: #f1f5f9; color: #000000;">关闭1.1.1.1 for Families的过滤功能</option>
+							<option value="warp-cli dns families malware" style="background-color: #f1f5f9; color: #000000;">开启恶意软件防护过滤</option>
+							<option value="warp-cli dns families full" style="background-color: #f1f5f9; color: #000000;">开启恶意软件和成人内容过滤</option>
+							<option value="warp-cli reset-settings" style="background-color: #f1f5f9; color: #000000;">恢复全部设置为初始默认状态</option>
+							<option value="warp-cli settings" style="background-color: #f1f5f9; color: #000000;">查看当前WARP客户端的全部详细设置</option>
+							<option value="warp-cli --accept-tos [COMMAND]" style="background-color: #f1f5f9; color: #000000;">在执行命令时自动接受服务条款，常用于脚本化操作</option>
+							<option value="sudo warp-diag" style="background-color: #f1f5f9; color: #000000;">生成用于调试的日志压缩包</option>
+							<option value="sudo warp-diag feedback" style="background-color: #f1f5f9; color: #000000;">提交反馈或报告bug并创建支持工单</option>
+							<option value="warp-cli --help" style="background-color: #f1f5f9; color: #000000;">显示所有支持的命令和选项帮助信息</option>
+							<option value="warp-cli --version" style="background-color: #f1f5f9; color: #000000;">显示当前安装的warp-cli版本号</option>
+							<option value="warp-cli -l, --listen" style="background-color: #f1f5f9; color: #000000;">监听状态变化和DNS日志</option>
+							<option value="warp-cli -v, --verbose" style="background-color: #f1f5f9; color: #000000;">启用详细输出模式，多个v增加详细程度</option>
+							<option value="warp-cli generate-completions" style="background-color: #f1f5f9; color: #000000;">为指定shell生成命令补全并输出到stdout</option>
+						</select>
+					</div>
+				</div>
+				<div class="link-row">
+					<div class="action-area" style="gap: 10px; flex-wrap: wrap; justify-content: flex-end;">
+						<div class="url-box" style="flex: 1; padding: 0 10px;">
+							<span id="warpCommandDisplay" class="url-text"
+								style="width: 100%; background: transparent; border: none; outline: none; color: #94a3b8; opacity: 0.8; display: inline-block;">请选择命令</span>
+						</div>
+						<button id="warpCopyBtn" class="copy-btn" onclick="warpCopyCommand()">复制命令</button>
+					</div>
+				</div>
+				<div class="item-desc">下拉选择操作，下方会显示完整命令，点击"复制命令"按钮，然后打开终端(管理员)，粘贴命令并回车执行</div>
+			</div>
+			<script>document.addEventListener("DOMContentLoaded",function(){const select=document.getElementById("warpCommandSelect");const display=document.getElementById("warpCommandDisplay");if(select&&display){display.textContent=select.value;select.addEventListener("change",function(){display.textContent=this.value})}});function warpCopyCommand(){const select=document.getElementById("warpCommandSelect");const copyBtn=document.getElementById("warpCopyBtn");if(select&&copyBtn){const command=select.value;const textarea=document.createElement("textarea");textarea.value=command;document.body.appendChild(textarea);textarea.select();try{if(document.execCommand("copy")){const originalText=copyBtn.innerText;copyBtn.innerText="已复制";setTimeout(()=>{copyBtn.innerText=originalText},1500)}}catch(err){console.error(err)}finally{document.body.removeChild(textarea)}}}</script>
+            
+			<div class="group-card"> 
+                <div class="item-header"><span class="item-title">Zero Trust 分流</span><span class="tag tag-featured">NEW</span></div>
+				<div class="item-desc">自动同步中国大陆 IP 段与直连域名到分流隧道（Split Tunnels）</div>	
+                <div class="action-area">
+                    <div class="url-box"><span class="url-text">github.com/upbeat-backbone-bose/cf-zt-cn-split</span></div>
+                    <a href="https://github.com/upbeat-backbone-bose/cf-zt-cn-split" class="open-btn" target="_blank">打开链接</a>
+                </div>
+            </div>
+</section>
+<script>
+
+document.addEventListener("DOMContentLoaded",async()=>{const containers=document.querySelectorAll('#m-intro, #m-client, #m-core, #m-clash, #m-xray, #m-singbox, #m-xhj, #m-hiddify');if(!containers.length)return;async function e(t,e=1){for(let n=0;n<=e;n++)try{const r=await fetch(t);if(r.ok)return await r.text()}catch(t){if(n===e)throw t}return null}function getRelativeTimeSpan(t){if(!t)return null;try{const e=new Date,n=new Date(e.getFullYear(),e.getMonth(),e.getDate()),r=new Date(t);if(isNaN(r.getTime()))return null;const o=new Date(r.getFullYear(),r.getMonth(),r.getDate()),i=n-o,a=Math.floor(i/864e5);return 0===a?"今天有更新":1===a?"昨天有更新":a>1?`${a}天前`:null}catch(t){return null}}function n(t,e,r){let o=e;o&&o.toLowerCase().startsWith("v")&&(o=o.substring(1));const i=t.closest(".link-row");if(i){const e=i.querySelector(".item-header");if(e&&!e.querySelector(".tag-version")){const a=e.querySelector(".item-title"),c=document.createElement("span");c.className="tag tag-featured tag-version";c.textContent=o;a?a.after(c):e.prepend(c);const s=getRelativeTimeSpan(r);if(s){const t=document.createElement("span");t.className=s==="今天有更新"||s==="昨天有更新"?"tag tag-featured":"tag";t.textContent=s;c.after(t)}}}}try{const r=await e(`client-ver.txt?_t=${Date.now()}`,1);if(r){const o={};r.split("\n").forEach(t=>{const e=t.split("|");e.length>=2&&(o[e[0].trim()]={ver:e[1].trim(),date:e[2]?e[2].trim():""})});for(const t of containers){t.querySelectorAll('a[href*="github.com"]').forEach(t=>{const e=t.getAttribute("href").match(/github\.com\/([^/]+)\/([^/]+)/);if(e){const r=e[1],i=e[2].replace(".git","").split("?")[0].split("#")[0],a=`${r}/${i}`;o[a]&&n(t,o[a].ver,o[a].date)}})}}}catch(t){}const appleLinks={};for(const t of containers){t.querySelectorAll('a[href*="apps.apple.com"]').forEach(t=>{const e=t.getAttribute("href").match(/id(\d+)/);if(e){appleLinks[e[1]]=t}})}const ids=Object.keys(appleLinks).join(",");if(ids){let c=0;async function s(){try{const t=await fetch(`https://itunes.apple.com/lookup?id=${ids}&_t=${Date.now()}`);if(!t.ok)throw new Error;const e=await t.json();e.results?.forEach(t=>{const e=appleLinks[t.trackId];if(e){const r=t.currentVersionReleaseDate?t.currentVersionReleaseDate.split("T")[0]:"";n(e,t.version,r)}})}catch(t){c<1?(c++,s()):console.error("Apple API failed")}}s()}});
+
+</script>
+<!-- ===== WARP MASQUE END ===== -->
+<footer>
             <span class="tips">Cloudflare EDT All in
                 One<br>内容来自网络，免费使用，不提供节点<br>仅用于技术研究，24小时后请删除，禁止它用<br>
 				不要将本站分享到国内，可以私信给最要好的盆友<br>
@@ -5232,26 +6731,50 @@ document.addEventListener("DOMContentLoaded",async()=>{const t=document.getEleme
 };</script>
 <!-- Cloudflare Pages Analytics --><!-- Cloudflare Pages Analytics --><script>
 (function () {
-  var FROM = 'https://bestcf.pages.dev';
+  /* 订阅地址跟随部署域名：把原站的绝对地址换成本站 origin */
+  var HOSTS = ['https://bestcf.pages.dev', 'https://masque.pages.dev'];
   var here = location.origin;
-  if (location.protocol === 'file:' || here === FROM) return;
-  function swap(v) { return v.split(FROM).join(here); }
+  if (location.protocol === 'file:' || HOSTS.indexOf(here) !== -1) return;
+
+  function swap(v) {
+    if (!v) return v;
+    for (var k = 0; k < HOSTS.length; k++) v = v.split(HOSTS[k]).join(here);
+    return v;
+  }
+
   var i, els;
   els = document.querySelectorAll('.url-text');
-  for (i = 0; i < els.length; i++) els[i].textContent = swap(els[i].textContent);
+  for (i = 0; i < els.length; i++) {
+    var el = els[i];
+    if (el.tagName === 'INPUT') {
+      if (el.value && el.value.indexOf('http') === 0) el.value = swap(el.value);
+    } else if (el.tagName !== 'SELECT') {
+      el.textContent = swap(el.textContent);
+    }
+  }
+
   els = document.querySelectorAll('[onclick]');
   for (i = 0; i < els.length; i++) {
     var oc = els[i].getAttribute('onclick');
-    if (oc && oc.indexOf(FROM) !== -1) els[i].setAttribute('onclick', swap(oc));
+    if (!oc) continue;
+    for (var k = 0; k < HOSTS.length; k++) {
+      if (oc.indexOf(HOSTS[k]) !== -1) { els[i].setAttribute('onclick', swap(oc)); break; }
+    }
   }
-  els = document.querySelectorAll('a[href^="https://bestcf.pages.dev/"]');
+
+  els = document.querySelectorAll('a[href]');
   for (i = 0; i < els.length; i++) {
     var h = els[i].getAttribute('href');
-    if (h === FROM || h === FROM + '/') continue;
-    els[i].setAttribute('href', h.slice(FROM.length));
+    if (!h) continue;
+    for (var k2 = 0; k2 < HOSTS.length; k2++) {
+      var pre = HOSTS[k2];
+      if (h.indexOf(pre + '/') === 0) { els[i].setAttribute('href', h.slice(pre.length)); break; }
+    }
   }
 })();
 </script>
+
+
 
 
 
@@ -5274,7 +6797,10 @@ document.addEventListener("DOMContentLoaded",async()=>{const t=document.getEleme
     { name: '上手教程', ids: ['jiaocheng'] },
     { name: '优选资源', ids: ['yxym', 'yxip', 'yxwz', 'yxgj', 'proxyip'] },
     { name: '实用工具', ids: ['jcgj', 'csgj', 'gzj', 'dyzh', 'gdgj'] },
-    { name: '参考与客户端', ids: ['cfgf', 'khd', 'others'] }
+    { name: '参考与客户端', ids: ['cfgf', 'khd', 'others'] },
+    { name: 'WARP MASQUE', sep: true, ids: ['m-intro', 'm-client', 'm-endpoint'] },
+    { name: 'MASQUE 客户端', ids: ['m-clash', 'm-xray', 'm-singbox', 'm-hiddify', 'm-xhj', 'm-core'] },
+    { name: 'MASQUE 工具', ids: ['m-tools', 'm-guide', 'm-warp'] }
   ];
 
   var FALLBACK_TITLES = { kjrk: '快捷入口' };
@@ -5325,8 +6851,13 @@ document.addEventListener("DOMContentLoaded",async()=>{const t=document.getEleme
   var mapped = {};
   GROUPS.forEach(function (g) { g.ids.forEach(function (id) { mapped[id] = true; }); });
 
-  function addGroup(label, list) {
+  function addGroup(label, list, sep) {
     if (!list.length) return;
+    if (sep) {
+      var sp = document.createElement('div');
+      sp.className = 'ui2-toc-sep';
+      toc.appendChild(sp);
+    }
     if (label) {
       var t = document.createElement('div');
       t.className = 'ui2-toc-group';
@@ -5347,7 +6878,7 @@ document.addEventListener("DOMContentLoaded",async()=>{const t=document.getEleme
   GROUPS.forEach(function (g) {
     addGroup(g.name, g.ids.map(function (id) {
       return infos.filter(function (i) { return i.id === id; })[0];
-    }).filter(Boolean));
+    }).filter(Boolean), g.sep);
   });
   addGroup('其它', infos.filter(function (i) { return !mapped[i.id]; }));
 

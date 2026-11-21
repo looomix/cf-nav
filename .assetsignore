@@ -9,5 +9,5 @@ README.md
 node_modules/
 .wrangler/
 *.log
-src/
+_worker.js
 assets/

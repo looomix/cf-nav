@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="https://masque.pages.dev/favicon.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zero Trust 注册专用</title>
+<style>
+  :root {
+    --bg:#dcedfb; --card:#ffffff; --border:rgba(15,80,130,.12);
+    --text:#0f3550; --muted:#5c7f9b; --accent:#1f8ae0; --danger:#d9534f;
+    --field-bg:#f7fcff;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:var(--bg);
+    background-image:radial-gradient(circle at 50% 0%,rgba(31,138,224,.10),transparent 620px);
+    background-repeat:no-repeat;
+    color:var(--text); padding:40px 16px;
+    display:flex; justify-content:center; min-height:100vh;
+  }
+  .container { width:100%; max-width:720px; }
+  .back { display:inline-block; margin-bottom:14px; font-size:12.5px; color:var(--accent); text-decoration:none; }
+  .back:hover { text-decoration:underline; }
+  h1 { font-size:26px; margin:0 0 6px; }
+  .sub { color:var(--muted); font-size:13px; margin-bottom:28px; line-height:1.6; }
+
+  .section {
+    border:1px solid var(--border); border-radius:14px;
+    padding:22px; margin-bottom:20px; backdrop-filter:blur(4px);
+  }
+  .section h2 { font-size:18px; margin:0 0 14px; color:var(--text); }
+
+  /* 文字引导统一左对齐 */
+  .hint {
+    color:var(--muted); font-size:12.5px; line-height:1.7;
+    margin:0 0 16px; text-align:left;
+  }
+  .hint:last-child { margin-bottom:0; }
+  .hint ol { margin:0; padding-left:20px; }
+  .hint li { margin-bottom:6px; }
+  .hint li:last-child { margin-bottom:0; }
+  .hint b { color:var(--text); font-weight:600; }
+  .hint code {
+    background:#e8f4fe; color:#1477c9;
+    padding:1px 6px; border-radius:4px; font-size:12px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    word-break:break-all;
+  }
+
+  textarea,
+  input[type=text] {
+    width:100%;
+    background:var(--field-bg); border:1px solid var(--border);
+    border-radius:8px; color:var(--text);
+    font-family:inherit; outline:none;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  textarea {
+    padding:10px 12px; font-size:12px;
+    font-family:ui-monospace,monospace; resize:vertical;
+    min-height:200px;
+  }
+  input[type=text] {
+    padding:10px 12px; font-size:13px;
+  }
+  textarea:focus,
+  input[type=text]:focus {
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(31,138,224,.22);
+  }
+
+  .team-row { display:flex; flex-direction:column; gap:10px; }
+
+  .btn {
+    display:inline-flex; align-items:center; justify-content:center; gap:6px;
+    background:linear-gradient(135deg,rgba(31,138,224,.55),rgba(20,119,201,.55));
+    color:#fff; border:none; border-radius:9px; padding:10px 18px;
+    font-size:13px; font-weight:600; cursor:pointer; text-decoration:none;
+    transition:opacity .2s ease, transform .2s ease;
+  }
+  .btn:hover:not(:disabled) { opacity:.92; transform:translateY(-1px); }
+  .btn:active:not(:disabled) { transform:translateY(0); }
+  .btn:disabled { opacity:.5; cursor:not-allowed; }
+  .btn.secondary { background:transparent; color:var(--text); border:1px solid var(--border); }
+  .btn-row { display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; }
+
+  .toast {
+    position:fixed; bottom:24px; left:50%;
+    transform:translateX(-50%) translateY(20px);
+    background:#f7fcff; border:1px solid var(--border); color:var(--text);
+    padding:10px 18px; border-radius:8px; font-size:13px;
+    opacity:0; transition:all .25s ease; pointer-events:none;
+    max-width:calc(100% - 32px); text-align:center;
+  }
+  .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+  @media (max-width:600px) {
+    body { padding:24px 12px; }
+    h1 { font-size:22px; }
+    .sub { margin-bottom:20px; }
+    .section { padding:18px 16px; }
+    .section h2 { font-size:16px; }
+    .btn-row .btn { flex:1 1 auto; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <a class="back" href="/">← 返回导航</a>
+  <h1>Zero Trust MASQUE 注册</h1>
+  <div class="sub">与 Usque 内核 config.json 配置文件数据结构一致，也可用于 MASQUE 转换器</div>
+
+  <!-- 第1步 -->
+  <div class="section">
+    <h2>第1步：注册 Cloudflare 账号并开通 Zero Trust</h2>
+    <div class="hint">
+      <ol>
+        <li>浏览器打开 Cloudflare 管理面板 <code>https://dash.cloudflare.com</code> 使用邮箱注册登录账号</li>
+        <li>点击导航栏中的 Zero Trust，首次选择计划-选免费套餐，Google 或 YouTube 搜索 <b>“Zero Trust 注册教程”</b> 可跳过绑卡</li>
+		<li>点击导航栏中的 Zero Trust - 设置，查看你的 <b>团队名</b> 填写到第2步输入框</li>
+      </ol>
+    </div>
+
+    <div class="btn-row">
+      <a class="btn" href="https://dash.cloudflare.com/" target="_blank" rel="noopener noreferrer">打开链接</a>
+      <a class="btn" href="guide.html" target="_blank" rel="noopener noreferrer">说明</a>
+    </div>
+  </div>
+
+  <!-- 第2步：登录 Zero Trust 并授权 -->
+  <div class="section">
+    <h2>第2步：登录 Zero Trust 并授权</h2>
+    <div class="team-row">
+      <!-- <div class="hint">示例：https://团队名.cloudflareaccess.com/warp</div> -->
+	  <input id="ztTeam" type="text" placeholder="输入团队名" autocomplete="off" spellcheck="false">
+      <div class="hint">
+        <ol>
+		  <li>输入<b> 团队名 </b>后点击下方按钮将打开 <code>https://<span id="ztTeamPreview">团队名</span>.cloudflareaccess.com/warp</code> 然后输入绑定的邮箱和验证码</li>
+          <li>登录成功后会跳转到一个 <b>Success</b> 成功提示页面，<b>右键 → 查看页面源代码</b><b> (注意：成功页面中包含token值，有效时间为60秒，操作过慢会导致失效，需要刷新成功页面或view-source源代码页面，重新获取新token)</b></li>
+          <li><b>Ctrl+A</b> 全选把 <b>完整的 HTML 源码</b> 粘贴到下方第3步输入框</li>
+        </ol>
+      </div>
+    </div>
+<script>
+  (function () {
+    const input = document.getElementById("ztTeam");
+    const preview = document.getElementById("ztTeamPreview");
+    if (!input || !preview) return;
+
+    function normalize(raw) {
+      return (raw || "").trim().toLowerCase()
+        .replace(/^https?:\/\//, "")
+        .replace(/\.cloudflareaccess\.com.*$/, "")
+        .replace(/\/.*$/, "")
+        .trim();
+    }
+
+    function sync() {
+      preview.textContent = normalize(input.value) || "团队名";
+    }
+
+    input.addEventListener("input", sync);
+    sync();
+  })();
+</script>	
+    <div class="btn-row">
+      <button class="btn" id="ztOpenBtn">打开链接</button>
+    </div>
+  </div>
+
+  <!-- 第3步 -->
+  <div class="section">
+    <h2>第3步：提取 token 并生成 MASQUE 配置</h2>
+    <div class="hint">粘贴完整的HTML源码，会自动提取token，点击下方按钮将生成账号配置文件 config.json ，拖入MASQUE转换器</div>
+    <textarea id="ztToken" placeholder="粘贴到这里"></textarea>
+    <div class="btn-row">
+      <button class="btn" id="ztBtn">生成并下载</button>
+    </div>
+  </div>
+<br><br><br>
+  <!-- 备用方案 -->
+  <div class="section">
+    <h2>备用方案 - 使用 Windows 注册脚本</h2>
+    <div class="hint">下载后解压，手动将 token 填入 bat 脚本运行即可生成.json</div>
+    <div class="btn-row">
+      <a class="btn" href="Usque-ZeroTrust-20260911.zip" target="_blank" rel="noopener noreferrer">下载工具</a>
+    </div>
+  </div>  
+</div>
+
+<div class="toast" id="toast">已复制</div>
+
+<script type="module">
+const toast = document.getElementById("toast");
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 1600);
+}
+
+// 从任意文本中提取 token：
+// 1. 优先匹配 token=xxx（排除引号、尖括号等 HTML 边界字符）
+// 2. 其次匹配裸 JWT
+// 3. 兜底返回原文本
+function extractToken(raw) {
+  const s = (raw || "").trim();
+  if (!s) return "";
+
+  const m = s.match(/[?&]token=([^&\s"'<>]+)/i);
+  if (m) return m[1];
+
+  const jwtMatch = s.match(/^(eyJ[A-Za-z0-9_-]+\.eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+)/);
+  if (jwtMatch) return jwtMatch[1];
+
+  return s;
+}
+
+const ztTokenInput = document.getElementById("ztToken");
+
+// 粘贴后自动提取 token，并写回输入框
+ztTokenInput.addEventListener("paste", (e) => {
+  const pasted = (e.clipboardData || window.clipboardData).getData("text");
+  if (!pasted) return;
+  const token = extractToken(pasted);
+  if (token && token !== pasted) {
+    e.preventDefault();
+    ztTokenInput.value = token;
+    showToast("已自动提取 token");
+  }
+});
+
+// 第2步：打开 Zero Trust 登录链接
+const ztTeamInput = document.getElementById("ztTeam");
+const ztOpenBtn = document.getElementById("ztOpenBtn");
+
+function buildTeamUrl() {
+  const raw = ztTeamInput.value.trim().toLowerCase();
+  // 清理：去掉协议、后缀、路径，只保留团队名前缀
+  const team = raw
+    .replace(/^https?:\/\//, "")
+    .replace(/\.cloudflareaccess\.com.*$/, "")
+    .replace(/\/.*$/, "")
+    .trim();
+  if (!team) return null;
+  return "https://" + team + ".cloudflareaccess.com/warp";
+}
+
+ztOpenBtn.addEventListener("click", () => {
+  const u = buildTeamUrl();
+  if (!u) {
+    showToast("请先输入团队名前缀");
+    return;
+  }
+  window.open(u, "_blank", "noopener,noreferrer");
+});
+
+// 第3步：请求接口并生成 config.json
+const ztBtn = document.getElementById("ztBtn");
+let freezeTimer = null;
+let cachedConfigText = null; // 缓存已生成的 config 文本
+
+function setBtnFrozen(seconds) {
+  let remain = seconds;
+  ztBtn.disabled = true;
+  ztBtn.textContent = `请稍候 ${remain}s`;
+  if (freezeTimer) clearInterval(freezeTimer);
+  freezeTimer = setInterval(() => {
+    remain -= 1;
+    if (remain <= 0) {
+      clearInterval(freezeTimer);
+      freezeTimer = null;
+      ztBtn.disabled = false;
+      ztBtn.textContent = "生成并下载";
+    } else {
+      ztBtn.textContent = `请稍候 ${remain}s`;
+    }
+  }, 1000);
+}
+
+function downloadText(text, filename) {
+  const blob = new Blob([text], { type: "application/json;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename || "config.json";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+ztBtn.addEventListener("click", async () => {
+  if (ztBtn.disabled) return;
+
+  // 有缓存 → 直接下载缓存，不再请求接口
+  if (cachedConfigText) {
+    downloadText(cachedConfigText, "config.json");
+    showToast("已从缓存下载 config.json");
+    return;
+  }
+
+  const token = extractToken(ztTokenInput.value);
+  if (!token) {
+    showToast("请先粘贴完整的HTML或token");
+    return;
+  }
+  ztTokenInput.value = token;
+
+  const originalText = ztBtn.textContent;
+  let success = false;
+
+  ztBtn.disabled = true;
+  ztBtn.textContent = "请求中...";
+
+  try {
+    const apiUrl =
+      "https://usque-register-proxy.pages.dev/?account=zt&token=" +
+      encodeURIComponent(token);
+
+    const resp = await fetch(apiUrl);
+    const text = await resp.text();
+
+    // 429 错误码 → 冻结 60 秒
+    if (text.includes("error") && (text.includes("429") || resp.status === 429)) {
+      showToast("请求过于频繁，已冻结 60 秒");
+      setBtnFrozen(60);
+      return; // success 仍为 false，finally 会清空输入框
+    }
+
+    // 内容包含 expired → 提示已过期
+    if (text.includes("error") && text.includes("expired")) {
+      alert("token 已过期，按照第2步重新登录或刷新成功页面再次获取");
+      return; // success 仍为 false，finally 会清空输入框
+    }
+
+    if (!resp.ok) {
+      throw new Error("HTTP " + resp.status + ": " + text);
+    }
+
+    // 校验是否为合法 JSON
+    let config;
+    try {
+      config = JSON.parse(text);
+    } catch (_) {
+      throw new Error("返回内容不是合法 JSON：" + text.slice(0, 200));
+    }
+
+    if (config.error) {
+      throw new Error(config.error);
+    }
+
+    const pretty = JSON.stringify(config, null, 2);
+    cachedConfigText = pretty; // 写入缓存
+
+    downloadText(pretty, "config.json");
+
+    success = true;
+    showToast("config.json 已开始下载");
+  } catch (e) {
+    showToast("请求失败：" + e.message);
+  } finally {
+    // 只要不是注册成功，就清空输入框
+    if (!success) {
+      ztTokenInput.value = "";
+    }
+
+    // 冻结状态下不恢复按钮，交给倒计时处理
+    if (!freezeTimer) {
+      ztBtn.disabled = false;
+      ztBtn.textContent = originalText;
+    }
+  }
+});
+</script>
+</body>
+</html>

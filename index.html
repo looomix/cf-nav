@@ -5678,7 +5678,7 @@ mark.ui2-hit {
 				<div class="item-desc">不推荐端口1701、4500、500</div>
 			</div>
 			<script>
-var MO = (location.protocol === 'file:') ? 'https://masque.pages.dev' : location.origin;function updateMasqueURL(){const e=document.getElementById("accountSelect").value,t=document.getElementById("protocolSelect").value,n=document.getElementById("portSelect").value,o=document.getElementById("masque-url-output");o&&(o.value=`${MO}/endpoint/${e}-${t}-${n}.txt`)}function openMasqueURL(){const e=document.getElementById("masque-url-output");e&&e.value&&window.open(e.value,"_blank")}function copyMasqueURL(){const e=document.getElementById("masque-url-output"),t=document.getElementById("masqueCopyBtn");if(!e||!e.value||!t)return;const n=document.createElement("textarea");n.value=e.value,document.body.appendChild(n),n.select(),document.execCommand("copy"),document.body.removeChild(n);const o=t.innerText;t.innerText="成功复制",setTimeout(()=>{t.innerText=o},1500)}function initMasqueCard(){const e=document.getElementById("accountSelect"),t=document.getElementById("protocolSelect"),n=document.getElementById("portSelect");e&&t&&n&&(e.addEventListener("change",updateMasqueURL),t.addEventListener("change",updateMasqueURL),n.addEventListener("change",updateMasqueURL),updateMasqueURL())}document.addEventListener("DOMContentLoaded",initMasqueCard);</script>
+var MO = 'https://masque.pages.dev';function updateMasqueURL(){const e=document.getElementById("accountSelect").value,t=document.getElementById("protocolSelect").value,n=document.getElementById("portSelect").value,o=document.getElementById("masque-url-output");o&&(o.value=`${MO}/endpoint/${e}-${t}-${n}.txt`)}function openMasqueURL(){const e=document.getElementById("masque-url-output");e&&e.value&&window.open(e.value,"_blank")}function copyMasqueURL(){const e=document.getElementById("masque-url-output"),t=document.getElementById("masqueCopyBtn");if(!e||!e.value||!t)return;const n=document.createElement("textarea");n.value=e.value,document.body.appendChild(n),n.select(),document.execCommand("copy"),document.body.removeChild(n);const o=t.innerText;t.innerText="成功复制",setTimeout(()=>{t.innerText=o},1500)}function initMasqueCard(){const e=document.getElementById("accountSelect"),t=document.getElementById("protocolSelect"),n=document.getElementById("portSelect");e&&t&&n&&(e.addEventListener("change",updateMasqueURL),t.addEventListener("change",updateMasqueURL),n.addEventListener("change",updateMasqueURL),updateMasqueURL())}document.addEventListener("DOMContentLoaded",initMasqueCard);</script>
 
 			<div class="group-card">
 				<div class="group-name">官方端点 H2<span class="tag tag-featured">H3不可用</span><span class="tag">每6小时随机</span></div>
@@ -5722,7 +5722,7 @@ var MO = (location.protocol === 'file:') ? 'https://masque.pages.dev' : location
 				</div>
 			</div>
 			<script>
-var MO = (location.protocol === 'file:') ? 'https://masque.pages.dev' : location.origin;function updateH2URL(){const e=document.getElementById("h2AccountSelect").value,t=document.getElementById("h2PortSelect").value,n=document.getElementById("h2CountSelect").value,o=document.getElementById("h2-url-output");o&&(o.value=`${MO}/endpoint/h2-random/${e}-${t}-${n}.txt`)}function openH2URL(){const e=document.getElementById("h2-url-output");e&&e.value&&window.open(e.value,"_blank")}function copyH2URL(){const e=document.getElementById("h2-url-output"),t=document.getElementById("h2CopyBtn");if(!e||!e.value||!t)return;const n=document.createElement("textarea");n.value=e.value,document.body.appendChild(n),n.select(),document.execCommand("copy"),document.body.removeChild(n);const o=t.innerText;t.innerText="成功复制",setTimeout(()=>{t.innerText=o},1500)}function initH2Card(){const e=document.getElementById("h2AccountSelect"),t=document.getElementById("h2PortSelect"),n=document.getElementById("h2CountSelect");e&&t&&n&&(e.addEventListener("change",updateH2URL),t.addEventListener("change",updateH2URL),n.addEventListener("change",updateH2URL),updateH2URL())}document.addEventListener("DOMContentLoaded",initH2Card);</script>
+var MO = 'https://masque.pages.dev';function updateH2URL(){const e=document.getElementById("h2AccountSelect").value,t=document.getElementById("h2PortSelect").value,n=document.getElementById("h2CountSelect").value,o=document.getElementById("h2-url-output");o&&(o.value=`${MO}/endpoint/h2-random/${e}-${t}-${n}.txt`)}function openH2URL(){const e=document.getElementById("h2-url-output");e&&e.value&&window.open(e.value,"_blank")}function copyH2URL(){const e=document.getElementById("h2-url-output"),t=document.getElementById("h2CopyBtn");if(!e||!e.value||!t)return;const n=document.createElement("textarea");n.value=e.value,document.body.appendChild(n),n.select(),document.execCommand("copy"),document.body.removeChild(n);const o=t.innerText;t.innerText="成功复制",setTimeout(()=>{t.innerText=o},1500)}function initH2Card(){const e=document.getElementById("h2AccountSelect"),t=document.getElementById("h2PortSelect"),n=document.getElementById("h2CountSelect");e&&t&&n&&(e.addEventListener("change",updateH2URL),t.addEventListener("change",updateH2URL),n.addEventListener("change",updateH2URL),updateH2URL())}document.addEventListener("DOMContentLoaded",initH2Card);</script>
 
 			<div class="group-card">
 				<div class="group-name">第三方端点<span class="tag tag-featured">早中晚自动更新 (实验)</span><span class="tag">来自网友投稿</span></div>
@@ -6729,50 +6729,6 @@ document.addEventListener("DOMContentLoaded",async()=>{const t=document.getEleme
     flash(false);
   }
 };</script>
-<!-- Cloudflare Pages Analytics --><!-- Cloudflare Pages Analytics --><script>
-(function () {
-  /* 订阅地址跟随部署域名：把原站的绝对地址换成本站 origin */
-  var HOSTS = ['https://bestcf.pages.dev', 'https://masque.pages.dev'];
-  var here = location.origin;
-  if (location.protocol === 'file:' || HOSTS.indexOf(here) !== -1) return;
-
-  function swap(v) {
-    if (!v) return v;
-    for (var k = 0; k < HOSTS.length; k++) v = v.split(HOSTS[k]).join(here);
-    return v;
-  }
-
-  var i, els;
-  els = document.querySelectorAll('.url-text');
-  for (i = 0; i < els.length; i++) {
-    var el = els[i];
-    if (el.tagName === 'INPUT') {
-      if (el.value && el.value.indexOf('http') === 0) el.value = swap(el.value);
-    } else if (el.tagName !== 'SELECT') {
-      el.textContent = swap(el.textContent);
-    }
-  }
-
-  els = document.querySelectorAll('[onclick]');
-  for (i = 0; i < els.length; i++) {
-    var oc = els[i].getAttribute('onclick');
-    if (!oc) continue;
-    for (var k = 0; k < HOSTS.length; k++) {
-      if (oc.indexOf(HOSTS[k]) !== -1) { els[i].setAttribute('onclick', swap(oc)); break; }
-    }
-  }
-
-  els = document.querySelectorAll('a[href]');
-  for (i = 0; i < els.length; i++) {
-    var h = els[i].getAttribute('href');
-    if (!h) continue;
-    for (var k2 = 0; k2 < HOSTS.length; k2++) {
-      var pre = HOSTS[k2];
-      if (h.indexOf(pre + '/') === 0) { els[i].setAttribute('href', h.slice(pre.length)); break; }
-    }
-  }
-})();
-</script>
 
 
 

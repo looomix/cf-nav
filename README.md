@@ -77,7 +77,7 @@ https://cf-nav.<你的账号子域>.workers.dev
 
 ![只贴了 _worker.js、还没连仓库时打开的引导页](assets/worker-setup.png)
 
-这是**刻意设计**的：此时 Worker 只有代码，仓库里的 `index.html` 和 130 个数据文件还没上传，`env.ASSETS` 为空。`_worker.js` 检测到这种情况会返回引导页，而不是抛 500。
+这是**刻意设计**的：此时 Worker 只有代码，仓库里的 `index.html` 与各静态目录还没上传，`env.ASSETS` 为空。`_worker.js` 检测到这种情况会返回引导页，而不是抛 500。
 
 确认方式：响应头里带 `x-setup: assets-missing`。等 1.6 构建完成，这个头就消失了，页面变成真正的导航站。
 
